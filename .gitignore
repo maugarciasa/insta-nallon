@@ -1,0 +1,21 @@
+# Material bruto de câmera e áudio de trabalho
+*.MOV
+*.mov
+*.DNG
+*.dng
+*.wav
+amostras-voz/
+
+# Skills de terceiros (instaladas com `npx skills`); só a própria entra no git
+.claude/skills/*
+!.claude/skills/brag-instagram/
+.agents/skills/*
+!.agents/skills/brag-instagram/
+skills-lock.json
+
+# Saída de render e arquivos locais
+brag-output*/
+.env*
+Thumbs.db
+desktop.ini
+.DS_Store

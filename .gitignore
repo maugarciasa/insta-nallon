@@ -5,6 +5,7 @@
 *.dng
 *.wav
 amostras-voz/
+amostras-som/
 
 # Skills de terceiros (instaladas com `npx skills`); só a própria entra no git
 .claude/skills/*

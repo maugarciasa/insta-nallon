@@ -17,7 +17,8 @@ Este arquivo é a fonte única das regras. O `AGENTS.md` só aponta para cá.
 - `planejamento/registro-videos.md`: um registro por vídeo feito. Serve para escolher o setor do próximo.
 - `artes/`: artes geradas, nome `dia-peça-slide.png`.
 - `videos/`: Reels prontos, nome `AAAA-MM-DD-<setor>.mp4` (setor em uma palavra: `pdv`, `caixa`, `agenda`…), com `.jpg` (capa) e `.txt` (legenda do post) de mesmo nome.
-- `.claude/skills/brag-instagram/`: skill própria que gera os Reels. É a cópia oficial: `~/.claude/skills/brag-instagram` é junction para cá. A de `.agents/skills/` (Codex) é a mesma com `~/.claude/` trocado por `~/.Codex/`; ao editar uma, refazer a outra. As outras skills de `.claude/skills` e `.agents/skills` são de terceiros, instaladas com `npx skills`, e ficam fora do git.
+- `.claude/skills/brag-instagram/`: skill própria que gera os Reels. É a cópia oficial: `~/.claude/skills/brag-instagram` é junction para cá. A de `.agents/skills/` (Codex) é a mesma com `~/.claude/` trocado por `~/.Codex/`; ao editar uma, refazer a outra.
+- `.claude/skills/reels-nallon/`: skill própria do fluxo diário (escolhe os 2 setores, gera, copia, registra e versiona). Traz `trilhas.py`, que sintetiza as 5 trilhas ambiente. A cópia em `.agents/skills/` é idêntica; ao editar uma, copiar para a outra. As outras skills de `.claude/skills` e `.agents/skills` são de terceiros, instaladas com `npx skills`, e ficam fora do git.
 
 ## Vídeos: 2 por dia, setores diferentes
 

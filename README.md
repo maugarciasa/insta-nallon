@@ -22,6 +22,7 @@ conteúdo, os roteiros, as artes e os Reels prontos.
 | `artes/` | Artes finais de feed e stories (`dia-peça-slide.png`). |
 | `videos/` | Reels finais (`AAAA-MM-DD-<setor>.mp4`), com capa `.jpg` e legenda `.txt`. |
 | `.claude/skills/brag-instagram/` | Skill que gera os Reels a partir do app local, com dados fictícios. |
+| `.claude/skills/reels-nallon/` | Skill do fluxo diário: `/reels-nallon` escolhe os 2 setores, gera os vídeos, registra e versiona. Inclui as trilhas ambiente próprias (`trilhas.py`). |
 
 ## Como os Reels são feitos
 

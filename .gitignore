@@ -7,11 +7,13 @@
 amostras-voz/
 amostras-som/
 
-# Skills de terceiros (instaladas com `npx skills`); só a própria entra no git
+# Skills de terceiros (instaladas com `npx skills`); só as próprias entram no git
 .claude/skills/*
 !.claude/skills/brag-instagram/
+!.claude/skills/reels-nallon/
 .agents/skills/*
 !.agents/skills/brag-instagram/
+!.agents/skills/reels-nallon/
 skills-lock.json
 
 # Saída de render e arquivos locais

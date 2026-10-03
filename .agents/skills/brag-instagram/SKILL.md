@@ -15,7 +15,7 @@ editar lá, a atualização sobrescreve).
 
 | Opção | Padrão |
 |---|---|
-| `--voz <perfil>\|pf_dora\|pm_alex` | `minha-voz`: voz do usuário clonada, OmniVoice (perfil em `~/.hyperframes/vozes/<perfil>/`). `pf_dora` (feminina) e `pm_alex` (masculina) usam o Kokoro |
+| `--voz <perfil>\|pf_dora\|pm_alex` | `narrador`: voz masculina sintética, OmniVoice (perfil em `~/.hyperframes/vozes/<perfil>/`). `pf_dora` (feminina) e `pm_alex` (masculina) usam o Kokoro |
 | `--sem-voz` | narração ligada |
 | `--tone`, `--duration`, `--no-music`, `--no-sfx`, `--title` | repassadas à `/brag` |
 
@@ -69,30 +69,28 @@ cabeçalho do `.sql`. Não usar o modo demonstração: localmente faltam
 schema mudou; ajustar o `.sql` pelas migrations e testar trocando o nome
 da loja e o `commit` por `rollback` numa cópia.
 
-## Formato Reels (passos 2 e 3)
+## Formato Reels e Direção de Arte SaaS Premium V2 (passos 2 e 3)
 
-- **Área segura.** A interface do Instagram cobre o vídeo: 250px no topo,
-  420px na base (legenda e perfil), 120px na direita (botões), 60px na
-  esquerda. Texto, legenda e UI importante ficam dentro de
-  x 60–960, y 250–1500.
-- **UI em pé.** Não encolher tela de desktop. Capturar o app em viewport de
-  celular (390px de largura, escala 3) ou aproximar a câmera em uma coluna,
-  um card ou um formulário por vez.
-- **Gancho no primeiro segundo.** Nada de logo abrindo o vídeo. Frame 1 já
-  mostra a frase de impacto ou o produto trabalhando. Logo só no fecho.
+No projeto Nallon, siga a direção de arte de `C:\dev\Insta Nallon\docs\direcao-visual-reels.md`; onde o resumo abaixo divergir dela, vale ela. Peça publicitária premium de software SaaS moderno (referência Linear, Apple, Stripe, Notion). Menos elementos, mais espaço, mais precisão e foco na interface.
+
+- **Formato e Quadro:** Vertical 9:16 (1080 × 1920), 30 FPS. Preencher 100% do quadro. PROIBIDO criar barras pretas laterais ou superiores. Respeitar safe areas do Reels (x 60–960, y 250–1500).
+- **Interface e Painel Flutuante:** A interface é o protagonista absoluto, 100% nítida e fiel (sem recriar botões, sem inventar dados, sem blur na UI). Reduzir drasticamente a aparência de "celular genérico": preferir a própria interface como um painel flutuante premium com borda ultrafina refinada (ou sem moldura pesada) e sombra natural suave profunda. A moldura jamais chama mais atenção que o software.
+- **Fundo Minimalista:** Fundo creme da marca (`#f5f1ea`), iluminação difusa quase imperceptível. O fundo desaparece visualmente para o sistema brilhar.
+- **Composição & Hierarquia:** Em cada momento no máximo: 1) uma mensagem principal; 2) a interface demonstrando; 3) um pequeno elemento secundário. Evitar poluição visual de badge + título + subtítulo + legenda gigante simultâneos.
+- **Títulos:** Curtos e focados no benefício ("Gestão em um só lugar"), com excelente kerning e espaçamento generoso. A marca Nallon não se repete em todas as cenas.
+- **Badges:** Pequenos, discretos, baixa altura e contraste moderado. Nunca competem com o título.
+- **Motion Design:** Câmera aproximando lentamente (zoom de 4% a 12%; até 15% no close de uma funcionalidade), reposicionamento sutil, parallax discreto, fade e slide suave (200 a 500 ms). A cada 1,5 a 3 segundos deve ocorrer uma mudança visual sutil (mudança de foco/aproximação). Sem bounce, shake, zoom agressivo ou efeitos chamativos.
+- **Gancho no primeiro segundo.** Frame 1 já mostra a mensagem ou o produto trabalhando. Logo só no fecho.
 - **Duração.** 20–30s; a fala define o ritmo.
-- **Loop.** O Reels repete sozinho. O último frame precisa emendar no
-  primeiro sem salto: mesmo fundo e mesma cor base do gancho, sem fade para
-  preto. A música não termina em silêncio longo; corta junto com o último
-  frame. A última fala fecha a ideia (não termina em "e...").
+- **Loop.** O Reels repete sozinho: último frame emenda no primeiro sem salto, música corta junto com o último frame.
 
 ## Encerramento obrigatório (projeto Nallon)
 
-Todo vídeo do Nallon termina com a narração exata "Nallon. Gestão inteligente
-para o seu negócio." (regra completa no `CLAUDE.md` de `C:\dev\Insta Nallon`).
-É a última fala do roteiro: nada depois dela, pausa curta após "Nallon", logo
-do Nallon na tela junto, legenda igual à fala. A cena final dura o suficiente
-para a frase inteira e a logo assentarem.
+Todo vídeo termina com a narração exata "Nallon. Gestão inteligente para o seu negócio."
+No encerramento, remover gradualmente a interface. Ficam só a logo do Nallon
+(ou o nome NALLON) e a frase "Gestão inteligente para o seu negócio.",
+centralizadas. A marca entra com animação discreta, de 0,8 a 1,5 s, e a cena
+dura até a fala terminar. Sem CTA nem efeitos luminosos. Nenhuma fala depois.
 
 ## Narração (passo 3, substitui a seção "Voiceover" da `/brag`)
 
@@ -104,9 +102,9 @@ No `brag-plan.md`, seção `## Roteiro da narração`: uma fala por cena.
   acha o cabo. O Pix fecha a venda." Não ler o texto que já está escrito.
 - 2,2 a 2,6 palavras por segundo de cena. Cena de 4s: no máximo 10 palavras.
 - Escrever para o ouvido, não para o olho: moeda e siglas lidas como
-  palavra por extenso. Erros confirmados no Kokoro: "R$ 39,90" sai
-  "reais dólar trinta e nove vírgula noventa" (escrever "trinta e nove e
-  noventa"); "OS" sai "ôs" (escrever "ó ésse").
+  palavra por extenso. Erros confirmados no Kokoro: "R$" sai "reais
+  dólar" e a vírgula do valor é lida "vírgula" (para "R$ 47,00", escrever
+  "quarenta e sete reais"); "OS" sai "ôs" (escrever "ó ésse").
 - Com Kokoro, conferir como a voz lê nomes, siglas e números do roteiro
   antes de gerar:
 
@@ -117,7 +115,7 @@ No `brag-plan.md`, seção `## Roteiro da narração`: uma fala por cena.
   ```
 
   Fonema estranho: reescrever como se fala e conferir de novo.
-- A legenda na tela usa a grafia normal ("R$ 39,90"), não a falada.
+- A legenda na tela usa a grafia normal ("R$ 47,00"), não a falada.
 
 ### Gerar a fala: OmniVoice (padrão)
 
@@ -132,10 +130,12 @@ O perfil `~/.hyperframes/vozes/<perfil>/` guarda `ref.wav` (3 a 10s de
 fala em pt-BR) e `ref.txt` (o texto exato dito no `ref.wav`). Toda cena
 clona o `ref.wav`, então a voz fica igual do começo ao fim.
 
-O perfil padrão `minha-voz` é a voz do usuário, clonada de um trecho de
-6,5s de `Downloads/minah voz.mp3` (o ref.txt traz números por extenso). O
-perfil `narradora` (sintética feminina, jovem, limpa e suave) segue
-disponível com `--voz narradora`. Ela foi criada uma vez por descrição
+O perfil padrão `narrador` é uma voz masculina sintética, grave e calma,
+criada por descrição; o `ref.wav` é uma amostra de 8,3s dela (o ref.txt
+traz números por extenso). Seguem disponíveis `--voz minha-voz` (voz do
+usuário, clonada de um trecho de 6,5s de `Downloads/minah voz.mp3`) e
+`--voz narradora` (sintética feminina, jovem, limpa e suave). A
+`narradora` foi criada uma vez por descrição
 (`"instruct": "female, young adult, moderate pitch"`, sem `ref_audio`) e
 o áudio gerado virou o `ref.wav`. Não usar `instruct` direto nas cenas:
 cada geração sai com uma voz diferente. Perfil ausente: gerar com Kokoro
@@ -164,7 +164,7 @@ PYTHONIOENCODING=utf-8 "$(uv tool dir)/omnivoice/Scripts/python.exe" \
 ```
 
 Fala que não bate com o roteiro: regerar só aquela linha (jsonl com uma
-linha). O Whisper escreve número e sigla na grafia normal ("R$ 39,90"),
+linha). O Whisper escreve número e sigla na grafia normal ("R$ 47,00"),
 então a checagem não pega pronúncia errada de número: escrever para o
 ouvido vale aqui também.
 
@@ -201,24 +201,15 @@ storyboard com esses valores antes de compor.
 - Música abaixa para 0,12–0,15 enquanto há fala e volta depois
   (regra de ducking da `/brag`).
 
-### Legenda na tela
+### Legenda Editorial Premium (V2)
 
-Quem assiste sem som precisa entender o vídeo.
+Quem assiste sem som precisa entender o vídeo. Proibido criar caixas pretas grandes ocupando a largura inferior.
 
-- A frase da cena aparece escrita enquanto é falada: entra com a fala e sai
-  com ela.
-- Uma a duas linhas, fonte do projeto, peso forte, ≥ 56px, sobre faixa de
-  fundo sólido e opaco (nunca texto direto sobre screenshot ou gradiente).
-- Contraste: o `hyperframes check` exige WCAG AA, 4,5:1 (3:1 só para
-  texto grande). Escolher o par de cores da faixa e do texto no plano e
-  calcular a razão antes de compor; mirar ≥ 7:1 para sobrar margem.
-  Destaque da palavra falada também passa por essa conta contra a faixa.
-  Texto de cena fora da legenda segue a mesma regra.
-- A faixa da legenda não se sobrepõe a outro texto da cena
-  (`content_overlap` no `check`): reservar a faixa no storyboard e manter
-  títulos e UI fora dela.
-- Posição fixa em todas as cenas, dentro da área segura, acima de y 1500.
-  Não cobrir a parte da UI que a cena está mostrando.
+- **Formato compacto editorial:** ocupar entre 55% e 70% da largura do vídeo (max 680-720px), altura mínima necessária, padding equilibrado e cantos arredondados discretos (18-22px). Fundo escuro levemente translúcido (`rgba(22,19,16,0.86)` com `backdrop-filter: blur(14px)`) com sombra muito suave.
+- **Frases curtas:** evitar frases longas de 2 ou 3 linhas quando uma frase enxuta transmite a ideia (ex: "Ainda usa vários sistemas?").
+- **Destaque exclusivo:** destacar no máximo UMA expressão importante por frase (em tom âmbar #e8a33d). Não usar múltiplas cores simultâneas.
+- Contraste: cumpre WCAG AA (≥ 4,5:1).
+- Posição fixa dentro da área segura (acima de y 1500).
 
 #### Palavra por palavra (destaque da palavra falada)
 
@@ -231,7 +222,7 @@ palavra dito pelo Whisper, no formato de transcrição das legendas
 Kokoro, rodar o mesmo script nos WAVs dele.
 
 - O Whisper escreve na grafia normal, mas quebra número e moeda em
-  pedaços: "R$ 39,90" vira `R`, `$`, `39`, `,90`. A legenda mostra a
+  pedaços: "R$ 47,00" vira `R`, `$`, `47`, `,00`. A legenda mostra a
   palavra do roteiro: alinhar pela ordem, e uma palavra do roteiro que
   corresponde a vários pedaços destaca do início do primeiro ao fim do
   último.
@@ -298,17 +289,3 @@ ffmpeg -y -i brag.mp4 -c:v copy -af loudnorm=I=-14:TP=-1:LRA=11 \
 1. Primeira linha com até 125 caracteres: é o que aparece antes do "mais".
    Diz o que o produto faz e para quem.
 2. Uma ou duas linhas de apoio, com a copy real do site.
-3. "Link na bio." URL escrita não vira link na legenda do Instagram.
-4. De 3 a 5 hashtags específicas do nicho, em pt-BR.
-
-## Checagem antes de dizer pronto
-
-- `ffprobe`: 1080x1920, 30fps, H.264, AAC 48 kHz.
-- Volume: `ffmpeg -i brag.mp4 -af loudnorm=print_format=summary -f null -`
-  dá cerca de -14 LUFS e pico ≤ -1 dBTP.
-- Stills de cada cena: legenda e texto dentro da área segura, legenda
-  sincronizada com a fala, nada cortado.
-- `brag.jpg` legível no recorte 3:4 central.
-- Loop: `ffmpeg -sseof -0.04 -i brag.mp4 -frames:v 1 fim.png` e o frame 1
-  lado a lado não mostram salto de fundo ou cor.
-- `git status` no repositório não lista nada de `brag-output`.

@@ -1,6 +1,6 @@
 ---
 name: reels-nallon
-description: Produz os Reels do dia do Nallon de ponta a ponta. Escolhe 2 setores pelo ciclo do registro, gera cada vídeo com a /brag-instagram e a trilha ambiente própria, copia para videos/, registra e faz o commit. Use quando o usuário disser "/reels-nallon", "vídeos do dia", "faz os reels de hoje" ou "próximos vídeos do Nallon".
+description: Produz os Reels do dia do Nallon de ponta a ponta. Escolhe 2 setores pelo ciclo do registro, gera cada vídeo com a /brag-instagram e a trilha ambiente própria, copia para videos/, registra, faz o commit e sobe o mp4 para o Release do mês. Use quando o usuário disser "/reels-nallon", "vídeos do dia", "faz os reels de hoje" ou "próximos vídeos do Nallon".
 ---
 
 # /reels-nallon
@@ -18,7 +18,7 @@ Onde este arquivo e o `CLAUDE.md` divergirem, vale o `CLAUDE.md`.
 |---|---|
 | `--setores <a>,<b>` | os 2 escolhidos no passo 1 |
 | `--um` | só 1 vídeo em vez de 2 |
-| `--trilha <1-5>` | `1` (pad calmo, o dos vídeos já publicados) |
+| `--trilha <1-5>` | `1` (`aurora`) |
 | `--data AAAA-MM-DD` | hoje |
 | `--voz`, `--sem-voz`, `--no-music`, `--no-sfx` | repassadas à `/brag-instagram` |
 
@@ -26,17 +26,23 @@ Trilhas, geradas por `<skill-dir>/trilhas.py`:
 
 | # | Arquivo | Clima |
 |---|---|---|
-| 1 | `1-pad-atual` | pad calmo, um pouco melancólico |
-| 2 | `2-pad-claro` | pad em tom maior, otimista |
-| 3 | `3-marimba-leve` | arpejo de marimba a 92 BPM, sem batida |
-| 4 | `4-piano-lofi` | piano elétrico com tremolo, quente |
-| 5 | `5-minimal-tech` | pulso grave suave e brilho agudo |
+| 1 | `1-aurora` | pad quente em tom maior com notas esparsas de piano elétrico; calmo e confiante |
+| 2 | `2-vidro` | acordes de piano elétrico a 76 BPM; quente, produto bem-acabado |
+| 3 | `3-pulso` | arpejo com eco e pulso grave macio a 100 BPM; movimento, tecnologia |
+| 4 | `4-manha` | piano de feltro a 66 BPM; acolhedor, loja de bairro |
+| 5 | `5-horizonte` | crescendo a 90 BPM que sobe até a assinatura |
+
+Nenhuma tem bateria. Todas trocam para o acorde final (tônica) nos últimos
+4,5 s ou pouco mais, onde cai a assinatura, e saem em fade de 2 s. Para
+ouvir antes de escolher: `python <skill-dir>/trilhas.py <projeto>/amostras-som`
+(pasta fora do git).
 
 ## 1. Escolher os setores
 
 1. Ler `<projeto>/planejamento/registro-videos.md` e achar o ciclo atual.
 2. Listar os setores da tabela do `CLAUDE.md` que ainda não saíram nele.
-   Vídeo fora da lista (ex.: Lilo) não conta para o ciclo.
+   Linha "extra" não conta para o ciclo. Vídeo extra só a pedido do
+   usuário; segue os passos 2 a 4 com o tema no lugar do setor.
 3. Escolher 2 setores diferentes, de nichos diferentes quando der. Dê
    preferência ao que já tem pendência em `planejamento/semana-NN.md`.
 4. Se faltam menos de 2 setores, fechar o ciclo: anotar "Ciclo N+1" no
@@ -54,10 +60,28 @@ Loja de demonstração por nicho (semeada só no Supabase local):
 
 ## 2. Roteiro
 
-Para cada setor, escrever `<projeto>/planejamento/roteiros/<setor>.md` no
-formato de `roteiros/lilo.md`: tabela de cenas (tela, fala, segundos),
-regras aplicadas e a legenda do post. `<setor>` é uma palavra só, em
-minúsculas: `pdv`, `caixa`, `os`, `estoque`, `agenda`…
+Para cada setor, escrever `<projeto>/planejamento/roteiros/<setor>.md`.
+`<setor>` é uma palavra só, em minúsculas: `pdv`, `caixa`, `os`, `estoque`,
+`agenda`… Formato:
+
+```markdown
+# Reels: <nome do setor>
+
+Setor: <setor>. Nicho: <sigla>. Voz: `narrador`. Trilha: <n> (<nome>).
+Duração alvo: <n> s. Loja fictícia "<loja>", só no app local.
+
+| # | Tela (app local) | Fala | ~s |
+|---|---|---|---|
+| 1 | <o que aparece> | <fala da cena> | 2,5 |
+| … | | | |
+| n | Encerramento limpo: logo do Nallon e assinatura | Nallon. Gestão inteligente para o seu negócio. | 4 |
+
+Regras aplicadas: <quais regras do CLAUDE.md pesaram neste roteiro>.
+
+## Legenda do post
+
+<texto do `share-copy.txt`>
+```
 
 Conferir cada afirmação do roteiro no código de `C:\dev\Nallon` ou em
 `C:\dev\Nallon\docs\ai\reference\modules\`. Se o setor é Pro, a fala e a
@@ -74,11 +98,11 @@ Música (substitui o "Usar `/media-use` para achar a faixa" da
 vídeo, gerar a trilha com essa duração e usar a escolhida.
 
 ```bash
-python <skill-dir>/trilhas.py assets/music <segundos>
+python <skill-dir>/trilhas.py assets/music <segundos> <n>
 ```
 
-Em `assets/music/`, ficar só com `<n>-*.wav` da `--trilha` escolhida e
-apontar o `<audio>` da música para ele. O ducking e o volume seguem a
+Sai só `assets/music/<n>-<nome>.wav`, da `--trilha` escolhida. Apontar o
+`<audio>` da música para ele. O ducking e o volume seguem a
 `/brag-instagram`.
 
 Os 2 vídeos são independentes. Terminar e conferir o primeiro (checagem da
@@ -94,20 +118,32 @@ Para cada vídeo, de `C:\dev\Nallon\brag-output-<data>-<setor>`:
 | `brag.jpg` | `<data>-<setor>.jpg` |
 | `share-copy.txt` | `<data>-<setor>.txt` |
 
-Acrescentar uma linha por vídeo em `planejamento/registro-videos.md`:
-`| <data> | <nome do setor> (<nicho>) | videos/<data>-<setor>.mp4 | não |`.
+Acrescentar uma linha por vídeo em `planejamento/registro-videos.md`, com
+as duas últimas colunas vazias até o post sair:
+`| <data> | <nome do setor> | <nicho> | <data>-<setor> | | |`.
 Se o setor tinha pendência em `semana-NN.md`, riscar a pendência.
 
 Mostrar os vídeos ao usuário com `SendUserFile` (mp4 e capa). Com o ok dele,
-fazer o commit em `<projeto>` (`feat(videos): <setor-a> e <setor-b> de <data>`)
-e o push. O repositório é público: antes do commit, `git status` não pode
-listar `.MOV`, `.DNG`, `.wav` nem nada de `brag-output`.
+de dentro de `<projeto>`:
+
+1. Commit (`feat(videos): <setor-a> e <setor-b> de <data>`) e push. Entram
+   a capa, a legenda, o roteiro e o registro. O repositório é público e o
+   `.mp4` fica fora dele: antes do commit, `git status` não pode listar
+   `.mp4`, `.MOV`, `.DNG`, `.wav` nem nada de `brag-output`.
+2. Subir cada `.mp4` para o Release do mês:
+
+   ```bash
+   gh release view reels-<AAAA-MM> >/dev/null 2>&1 || gh release create reels-<AAAA-MM> \
+     --title "Reels <AAAA-MM>" --notes "Reels finais do mês. Capa e legenda de cada um ficam em videos/."
+   gh release upload reels-<AAAA-MM> videos/<data>-<setor>.mp4
+   ```
 
 ## Checagem antes de dizer pronto
 
 - Os 2 setores não saíram antes no ciclo e são diferentes entre si.
+- Cada vídeo segue `<projeto>/docs/direcao-visual-reels.md` e passa na revisão da seção 10 dela.
 - Cada vídeo passou na checagem da `/brag-instagram` e termina com a
   assinatura exata do `CLAUDE.md`.
-- `videos/` tem `mp4`, `jpg` e `txt` de cada setor, com o nome certo.
+- `videos/` tem `mp4`, `jpg` e `txt` de cada setor, com o nome certo, e o `mp4` está no Release do mês.
 - O registro tem uma linha por vídeo novo.
 - `git status` em `<projeto>` está limpo depois do push.

@@ -12,11 +12,37 @@ automático de IA, propaganda genérica de aplicativo ou mockup exagerado.
 
 ## 1. Formato
 
-- Vertical 9:16, 1080 × 1920, 30 fps.
+- Vertical 9:16, 1080 × 1920, 30 fps constantes.
+- Arquivo MP4: vídeo H.264 progressivo, áudio AAC estéreo 48 kHz a 128 kbps ou mais.
 - O vídeo preenche 100% do quadro. Sem barras pretas e sem vídeo vertical dentro de outro canvas.
-- Área segura do Reels: texto e interface importante ficam em x 60–960 e y 250–1500.
 - Duração de 20 a 30 s. A fala define o ritmo.
 - O primeiro quadro já mostra a mensagem ou o produto funcionando. Logo só no encerramento.
+
+O Instagram aceita de 1,91:1 a 9:16, exige no mínimo 30 fps e 720 px, e
+deixa de recomendar a novos públicos o Reels com mais de 3 minutos.
+
+### Zona segura
+
+O app cobre o vídeo com o nome do perfil, a legenda do post e os botões.
+As margens abaixo são as do guia de anúncios da Meta (14% no topo, 35% na
+base, 6% de cada lado). A Meta não publica margem para Reels orgânico, e a
+do anúncio é a mais exigente: seguindo essa, o vídeo serve nos dois casos e
+pode ser turbinado sem refazer.
+
+| Faixa do quadro | O que pode ficar |
+|---|---|
+| x 65–1015, y 270–1250 | Título, legenda, logo, badge e o ponto da interface que a cena demonstra |
+| y 1250–1500 | Continuação da interface, só como contexto |
+| y 0–270 e y 1500–1920 | Só fundo |
+
+Abaixo de y 1000, nada importante à direita de x 960: ali fica a coluna de
+botões (curtir, comentar, enviar). Esse recuo é prática do projeto, não
+número oficial.
+
+### Capa
+
+- 1080 × 1920, com o conteúdo principal no recorte 3:4 central (y 240–1680), que é o que a grade do perfil mostra.
+- A capa é escolhida no envio. O Instagram não deixa trocar depois de publicar.
 
 ## 2. Fundo
 
@@ -73,7 +99,7 @@ Quem assiste sem som precisa entender o vídeo.
 - Legenda editorial compacta, nunca uma caixa preta de largura total.
 - Largura de 55% a 70% do quadro (até 720 px), altura mínima, cantos de 18 a 22 px, sombra muito suave.
 - Fundo escuro translúcido: `rgba(22,19,16,0.86)` com `backdrop-filter: blur(14px)`. Texto creme. Contraste mínimo de 4,5:1.
-- Posição fixa, dentro da área segura (acima de y 1500).
+- Posição fixa em todas as cenas, com a base da caixa em y 1250 ou acima.
 - Frase curta. "Ainda usa vários sistemas?", não "Sua empresa ainda usa vários sistemas separados?".
 - No máximo uma expressão destacada por frase, em âmbar. Com legenda palavra por palavra, o destaque é a palavra falada.
 
@@ -108,7 +134,7 @@ fala da assinatura terminar. Sem CTA, sem efeito luminoso.
 ## 10. Revisão antes de exportar
 
 - Quadro em 9:16, sem barras pretas.
-- Tudo o que importa dentro da área segura.
+- Título, legenda, logo e o ponto demonstrado da interface dentro da zona segura (x 65–1015, y 270–1250).
 - Alinhamentos, margens e espaçamentos consistentes.
 - Interface nítida e legível; proporção e sombra do painel coerentes entre as cenas.
 - Legenda sincronizada, compacta e com um destaque só.
@@ -117,3 +143,10 @@ fala da assinatura terminar. Sem CTA, sem efeito luminoso.
 
 Se parecer template, tire elementos. A qualidade vem de composição,
 tipografia, movimento e interface real.
+
+## Fontes
+
+Conferido em 2026-10-03. Reveja quando o Instagram mudar o app.
+
+- Central de Ajuda do Instagram, "Tamanho e taxas de proporção de reels": https://help.instagram.com/1038071743007909
+- Guia de anúncios da Meta, Instagram Reels (zona segura e codec): https://www.facebook.com/business/ads-guide/update/video/instagram-reels

@@ -50,7 +50,7 @@ Vocabulário: use os termos que o sistema usa na tela ("cliente", "agendamento",
 
 - Vertical **1080x1920**, 30 fps, H.264, áudio AAC 48 kHz.
 - **Duração 20 a 30 s.** A fala define o ritmo.
-- **Área segura do Instagram:** todo texto e interface importante dentro de x 60–960 e y 250–1500. O Instagram cobre 250 px no topo, 420 px na base, 120 px à direita e 60 px à esquerda.
+- **Zona segura do Instagram:** título, legenda, logo e o ponto da interface que a cena demonstra ficam em x 65–1015 e y 270–1250 (o app cobre 14% no topo, 35% na base e 6% de cada lado). A interface pode continuar até y 1500, só como contexto. Abaixo de y 1000, nada importante à direita de x 960.
 - **Quadro cheio:** o vídeo preenche 100% do quadro. Sem barras pretas e sem vídeo vertical dentro de outro canvas.
 - **Gancho no primeiro segundo:** o quadro 1 já mostra o produto funcionando. Sem logo abrindo o vídeo.
 
@@ -63,7 +63,7 @@ Peça publicitária de software SaaS moderno, no padrão de Linear, Apple, Strip
 - **Moldura:** a própria interface como painel flutuante, com borda ultrafina, cantos arredondados e sombra suave. Se usar moldura de celular, fina e sem borda preta grossa. As capturas entram sem esticar.
 - **Composição:** em cada momento, no máximo uma mensagem principal, a interface demonstrando e um elemento secundário pequeno.
 - **Título:** curto e sobre o benefício ("Gestão em um só lugar"), em `#1a1714`, semibold ou bold, sem encostar no painel. A marca não se repete em todas as cenas. Recurso Pro leva uma etiqueta "PRO" pequena, fundo âmbar `#e8a33d` e texto `#1a1714`.
-- **Legenda:** compacta, de 55% a 70% da largura (até 720 px), cantos de 18 a 22 px, fundo escuro translúcido (`rgba(22,19,16,0.86)`), texto creme, sempre no mesmo lugar e acima de y 1500. Frase curta. A palavra que está sendo falada fica em âmbar `#e8a33d`; nenhuma outra cor de destaque. A legenda mostra a frase enquanto ela é falada e some com ela. Contraste mínimo 4,5:1. Nunca uma caixa preta de largura total.
+- **Legenda:** compacta, de 55% a 70% da largura (até 720 px), cantos de 18 a 22 px, fundo escuro translúcido (`rgba(22,19,16,0.86)`), texto creme, sempre no mesmo lugar, com a base da caixa em y 1250 ou acima. Frase curta. A palavra que está sendo falada fica em âmbar `#e8a33d`; nenhuma outra cor de destaque. A legenda mostra a frase enquanto ela é falada e some com ela. Contraste mínimo 4,5:1. Nunca uma caixa preta de largura total.
 - **Movimento:** sutil e contínuo. Câmera aproximando devagar (zoom de 4% a 12%), parallax discreto, fade e slide de poucos pixels, transições de 200 a 500 ms. A cada 1,5 a 3 s, uma mudança visual pequena. Sem bounce, shake, zoom agressivo ou texto piscando.
 - **Demonstração:** mostre o contexto da tela, leve a câmera até a funcionalidade, amplie de 8% a 15%, escureça de leve o resto, execute a ação real e mostre o resultado. Sem círculos, setas ou marcações.
 - Fontes da marca: títulos Space Grotesk (se não tiver o arquivo, Geist), texto Geist. Cores: âmbar `#e8a33d`, creme `#f5f1ea`, texto `#1a1714`. O âmbar aparece com moderação.
@@ -101,7 +101,7 @@ Em português, neste formato:
 1. Primeira linha com até 125 caracteres, dizendo o que o produto faz e para quem.
 2. Uma ou duas linhas de apoio, só com o que o sistema faz hoje.
 3. "Link na bio." (URL escrita na legenda do Instagram não vira link).
-4. De 3 a 5 hashtags do segmento, sempre com `#nallon`. Exemplos: comércio `#gestaoempresarial #pdv #controledeestoque`; assistência `#assistenciatecnica #ordemdeservico`; barbearia e salão `#barbearia #agendaonline`; clínica `#clinicaodontologica #clinicamedica #agendaonline`.
+4. De 3 a 5 hashtags do segmento, sempre com `#nallon`. Nunca mais de 5: o Instagram ignora as que passarem disso. Exemplos: comércio `#gestaoempresarial #pdv #controledeestoque`; assistência `#assistenciatecnica #ordemdeservico`; barbearia e salão `#barbearia #agendaonline`; clínica `#clinicaodontologica #clinicamedica #agendaonline`.
 
 ## Entrega
 
@@ -116,7 +116,7 @@ Entregue estes arquivos, com o mesmo nome-base `AAAA-MM-DD-<tema>`:
 
 - [ ] 1080x1920, 30 fps, 20–30 s, quadro cheio e sem barras pretas.
 - [ ] Interface nítida e fiel, e nenhuma cena parada por mais de 3 s.
-- [ ] Texto e interface dentro de x 60–960, y 250–1500.
+- [ ] Título, legenda, logo e o ponto demonstrado dentro de x 65–1015, y 270–1250.
 - [ ] A legenda está sincronizada com a fala e nada está cortado.
 - [ ] Sem dado real na tela e sem recurso que o Nallon não tem.
 - [ ] Recurso Pro identificado como Pro (fala, legenda e etiqueta).

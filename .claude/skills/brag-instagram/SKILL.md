@@ -73,8 +73,10 @@ da loja e o `commit` por `rollback` numa cópia.
 
 No projeto Nallon, siga a direção de arte de `C:\dev\Insta Nallon\docs\direcao-visual-reels.md`; onde o resumo abaixo divergir dela, vale ela. Peça publicitária premium de software SaaS moderno (referência Linear, Apple, Stripe, Notion). Menos elementos, mais espaço, mais precisão e foco na interface.
 
-- **Formato e Quadro:** Vertical 9:16 (1080 × 1920), 30 FPS. Preencher 100% do quadro. PROIBIDO criar barras pretas laterais ou superiores. Respeitar safe areas do Reels (x 60–960, y 250–1500).
+- **Formato e Quadro:** Vertical 9:16 (1080 × 1920), 30 FPS. Preencher 100% do quadro. PROIBIDO criar barras pretas laterais ou superiores.
+- **Zona segura.** O app cobre o vídeo com nome do perfil, legenda do post e botões. Título, legenda, logo, badge e o ponto da interface que a cena demonstra ficam em x 65–1015, y 270–1250 (margens do guia da Meta: 14% no topo, 35% na base, 6% de cada lado). A interface pode continuar até y 1500, só como contexto. Abaixo de y 1000, nada importante à direita de x 960: ali fica a coluna de botões.
 - **Interface e Painel Flutuante:** A interface é o protagonista absoluto, 100% nítida e fiel (sem recriar botões, sem inventar dados, sem blur na UI). Reduzir drasticamente a aparência de "celular genérico": preferir a própria interface como um painel flutuante premium com borda ultrafina refinada (ou sem moldura pesada) e sombra natural suave profunda. A moldura jamais chama mais atenção que o software.
+- **UI em pé.** Não encolher tela de desktop. Capturar o app em viewport de celular (390px de largura, escala 3) ou aproximar a câmera em uma coluna, um card ou um formulário por vez.
 - **Fundo Minimalista:** Fundo creme da marca (`#f5f1ea`), iluminação difusa quase imperceptível. O fundo desaparece visualmente para o sistema brilhar.
 - **Composição & Hierarquia:** Em cada momento no máximo: 1) uma mensagem principal; 2) a interface demonstrando; 3) um pequeno elemento secundário. Evitar poluição visual de badge + título + subtítulo + legenda gigante simultâneos.
 - **Títulos:** Curtos e focados no benefício ("Gestão em um só lugar"), com excelente kerning e espaçamento generoso. A marca Nallon não se repete em todas as cenas.
@@ -82,7 +84,7 @@ No projeto Nallon, siga a direção de arte de `C:\dev\Insta Nallon\docs\direcao
 - **Motion Design:** Câmera aproximando lentamente (zoom de 4% a 12%; até 15% no close de uma funcionalidade), reposicionamento sutil, parallax discreto, fade e slide suave (200 a 500 ms). A cada 1,5 a 3 segundos deve ocorrer uma mudança visual sutil (mudança de foco/aproximação). Sem bounce, shake, zoom agressivo ou efeitos chamativos.
 - **Gancho no primeiro segundo.** Frame 1 já mostra a mensagem ou o produto trabalhando. Logo só no fecho.
 - **Duração.** 20–30s; a fala define o ritmo.
-- **Loop.** O Reels repete sozinho: último frame emenda no primeiro sem salto, música corta junto com o último frame.
+- **Loop.** O Reels repete sozinho. O último frame emenda no primeiro sem salto: mesmo fundo e mesma cor base do gancho, sem fade para preto. A música não termina em silêncio longo; sai junto com o último frame. A última fala fecha a ideia.
 
 ## Encerramento obrigatório (projeto Nallon)
 
@@ -209,7 +211,10 @@ Quem assiste sem som precisa entender o vídeo. Proibido criar caixas pretas gra
 - **Frases curtas:** evitar frases longas de 2 ou 3 linhas quando uma frase enxuta transmite a ideia (ex: "Ainda usa vários sistemas?").
 - **Destaque exclusivo:** destacar no máximo UMA expressão importante por frase (em tom âmbar #e8a33d). Não usar múltiplas cores simultâneas.
 - Contraste: cumpre WCAG AA (≥ 4,5:1).
-- Posição fixa dentro da área segura (acima de y 1500).
+- Posição fixa em todas as cenas, dentro da zona segura: a base da caixa fica em y 1250 ou acima. Não cobrir a parte da interface que a cena está mostrando.
+- A frase da cena aparece enquanto é falada: entra com a fala e sai com ela.
+- Calcular o contraste do par de cores no plano, antes de compor (o `hyperframes check` exige 4,5:1). O destaque em âmbar também passa por essa conta contra o fundo da caixa.
+- A caixa da legenda não se sobrepõe a outro texto da cena (`content_overlap` no `check`): reservar o lugar dela no storyboard.
 
 #### Palavra por palavra (destaque da palavra falada)
 
@@ -269,7 +274,8 @@ Erros que já custaram tempo em execuções anteriores:
 ### Capa
 
 `brag.jpg` em 1080x1920. O conteúdo principal cabe no recorte 3:4 central
-(y 240–1680): é o que aparece na grade do perfil.
+(y 240–1680): é o que aparece na grade do perfil. A capa é escolhida no
+envio; o Instagram não deixa trocar depois de publicar.
 
 ### Volume
 
@@ -289,3 +295,21 @@ ffmpeg -y -i brag.mp4 -c:v copy -af loudnorm=I=-14:TP=-1:LRA=11 \
 1. Primeira linha com até 125 caracteres: é o que aparece antes do "mais".
    Diz o que o produto faz e para quem.
 2. Uma ou duas linhas de apoio, com a copy real do site.
+3. "Link na bio." URL escrita não vira link na legenda do Instagram.
+4. De 3 a 5 hashtags específicas do nicho, em pt-BR. Nunca mais de 5: o
+   Instagram ignora as que passarem disso.
+
+## Checagem antes de dizer pronto
+
+- Formato (`ffprobe -v error -show_streams brag.mp4`): 1080x1920, 30 fps
+  constantes, H.264 `yuv420p` progressivo, AAC estéreo 48 kHz a 128 kbps ou
+  mais. Duração de 20 a 30 s.
+- Volume: `ffmpeg -i brag.mp4 -af loudnorm=print_format=summary -f null -`
+  dá cerca de -14 LUFS e pico ≤ -1 dBTP.
+- Stills de cada cena: título, legenda e o ponto demonstrado dentro da zona
+  segura (x 65–1015, y 270–1250), legenda sincronizada com a fala, nada
+  cortado, quadro cheio e sem barras pretas.
+- `brag.jpg` legível no recorte 3:4 central.
+- Loop: `ffmpeg -sseof -0.04 -i brag.mp4 -frames:v 1 fim.png` e o frame 1
+  lado a lado não mostram salto de fundo ou cor.
+- `git status` no repositório não lista nada de `brag-output`.

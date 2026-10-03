@@ -89,6 +89,9 @@ legenda dizem "no plano Pro". A última fala é a assinatura do `CLAUDE.md`.
 
 ## 3. Gerar cada vídeo
 
+Antes de compor, ler `<projeto>/docs/direcao-visual-reels.md`: formato
+exigido pelo Instagram, zona segura, legenda, movimento e encerramento.
+
 Rodar a `/brag-instagram` dentro de `C:\dev\Nallon`, uma vez por setor, com o
 roteiro do passo 2 como plano. Pasta de saída:
 `C:\dev\Nallon\brag-output-<data>-<setor>`.
@@ -127,23 +130,40 @@ Mostrar os vídeos ao usuário com `SendUserFile` (mp4 e capa). Com o ok dele,
 de dentro de `<projeto>`:
 
 1. Commit (`feat(videos): <setor-a> e <setor-b> de <data>`) e push. Entram
-   a capa, a legenda, o roteiro e o registro. O repositório é público e o
-   `.mp4` fica fora dele: antes do commit, `git status` não pode listar
-   `.mp4`, `.MOV`, `.DNG`, `.wav` nem nada de `brag-output`.
+   só a capa, a legenda, o roteiro e o registro. O repositório é público:
+   o `.gitignore` já barra `.mp4`, áudio e material bruto; não forçar
+   nenhum deles com `git add -f`.
 2. Subir cada `.mp4` para o Release do mês:
 
    ```bash
    gh release view reels-<AAAA-MM> >/dev/null 2>&1 || gh release create reels-<AAAA-MM> \
      --title "Reels <AAAA-MM>" --notes "Reels finais do mês. Capa e legenda de cada um ficam em videos/."
-   gh release upload reels-<AAAA-MM> videos/<data>-<setor>.mp4
+   gh release upload reels-<AAAA-MM> videos/<data>-<setor>.mp4 --clobber
    ```
+
+## 5. Publicar (quem publica é o usuário)
+
+Passar esta lista junto com os vídeos:
+
+1. No app: Perfil, Menu, "Seu app e suas mídias", "Qualidade da mídia",
+   ligar "Carregar em alta qualidade". Basta uma vez por aparelho.
+2. No envio, escolher `<data>-<setor>.jpg` como capa e ajustar o recorte
+   da grade. O Instagram não deixa trocar a capa depois de publicar.
+3. Colar a legenda do `.txt`. No máximo 5 hashtags: o Instagram ignora as
+   que passarem disso.
+4. Depois de publicar, preencher "Publicado em" e "Link do post" na linha
+   do vídeo em `planejamento/registro-videos.md`.
 
 ## Checagem antes de dizer pronto
 
 - Os 2 setores não saíram antes no ciclo e são diferentes entre si.
 - Cada vídeo segue `<projeto>/docs/direcao-visual-reels.md` e passa na revisão da seção 10 dela.
-- Cada vídeo passou na checagem da `/brag-instagram` e termina com a
-  assinatura exata do `CLAUDE.md`.
+- Cada vídeo passou na checagem da `/brag-instagram` (formato, volume, zona
+  segura, capa, loop) e termina com a assinatura exata do `CLAUDE.md`.
+- Em cada still, título, legenda e o ponto demonstrado da interface estão
+  em x 65–1015, y 270–1250.
+- A legenda do post tem primeira linha de até 125 caracteres, "link na
+  bio" e de 3 a 5 hashtags, com `#nallon`.
 - `videos/` tem `mp4`, `jpg` e `txt` de cada setor, com o nome certo, e o `mp4` está no Release do mês.
 - O registro tem uma linha por vídeo novo.
 - `git status` em `<projeto>` está limpo depois do push.

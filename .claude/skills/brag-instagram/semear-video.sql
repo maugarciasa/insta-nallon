@@ -1,5 +1,5 @@
 -- Loja fictícia do Nallon para gravar vídeo. Só no Supabase LOCAL:
---   docker exec -i supabase_db_sistema-connect psql -U postgres -d postgres < semear-video.sql
+--   docker exec -i supabase_db_nallon psql -U postgres -d postgres < semear-video.sql
 -- Idempotente: se a loja já existe, não faz nada.
 -- Login no app local: carlos@video.local / aurora-video-local-2026
 -- (credencial sintética; o banco só escuta em 127.0.0.1).
@@ -32,7 +32,7 @@ set local session_replication_role = replica;
 
 insert into public.usuarios (id, loja_id, perfil_id, nome, email, ativo, telefone)
   values (:'usuario', :loja, (select id from public.perfis where slug = 'admin'), 'Carlos', 'carlos@video.local', true, '11999990000')
-  on conflict (id) do update set loja_id = excluded.loja_id, ativo = true;
+  on conflict (id) do update set loja_id = excluded.loja_id, perfil_id = excluded.perfil_id, ativo = true;
 
 insert into public.configuracoes (loja_id, chave, valor) values
   (:loja, 'desconto_maximo_caixa', '10'::jsonb),

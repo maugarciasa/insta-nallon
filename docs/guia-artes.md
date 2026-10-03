@@ -10,20 +10,36 @@ conteúdo e a identidade ficam no `CLAUDE.md` da raiz.
 |---|---|
 | Modelo | `gpt-2` |
 | Qualidade | `low` |
-| Resolução | `1k` (768×1024 no 3:4) |
+| Resolução | `2k` (1536×2048 no 3:4) |
 | Quantidade | `1` |
-| Referência | `seg-capa-v2` como `style` |
+| Referência | `artes/semana-01/seg-carrossel-01.png`, anexada como imagem de referência |
+| "AI prompt" | desligado, para o Magnific não reescrever o texto |
 | Feed | `3:4` |
 | Stories e capa de Reels | `9:16` |
 
-Custo real medido: 30 créditos por arte em `low 1k` com referência de estilo.
+Custo real medido: 30 créditos por arte em `low 1k` com referência de estilo e 45 em `low 2k` com referência (2026-10-03).
+
+O Instagram exibe o feed em 1080 px de largura, e a arte em `1k` tem 768.
+Para subir a resolução há dois caminhos, medidos em 2026-10-03:
+
+| Caminho | Resultado | Custo |
+|---|---|---|
+| Gerar em `2k` | 1536×2048 | o dobro do `1k` (30 créditos sem referência, contra 15) |
+| Image Upscaler, modo Precision, 2x, sobre a arte pronta | 1536×2048, sem mudar o desenho | 90 créditos por arte |
+
+Arte nova que vai para o feed: gere direto em `2k`. O upscaler só compensa
+para salvar uma arte já aprovada que não pode mudar.
+
+A geração pode ser feita no site (`magnific.com/app/ai-image-generator`)
+ou pelo conector do Magnific, com `images_generate` (modo `gpt-2`, mesma
+configuração) e a referência enviada antes como creation, tipo `style`.
 
 ## Regra de custo
 
-1. Gere sempre 1 imagem só, começando em `low 1k`.
+1. Gere sempre 1 imagem só, começando em `low 2k`.
 2. Gere de novo só se o texto sair errado.
-3. Se errar, tente mais 1 vez em `low 1k`.
-4. Se errar de novo, suba para `medium 1k`.
+3. Se errar, tente mais 1 vez em `low 2k`.
+4. Se errar de novo, suba para `medium 2k`.
 
 ## Como montar o prompt
 

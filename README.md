@@ -25,6 +25,7 @@ conteúdo, os roteiros, as artes e os Reels prontos.
 | `.claude/skills/reels-nallon/` | Skill do fluxo diário: `/reels-nallon` escolhe os 2 setores, gera os vídeos, registra e versiona. Inclui as trilhas ambiente próprias (`trilhas.py`). |
 | `.claude/skills/brag-instagram/` | Skill que gera cada Reels a partir do app local, com dados fictícios. |
 | `.agents/skills/` | Cópia das duas skills para o Codex, gerada por `sincronizar-skills.sh`. |
+| `.githooks/pre-commit` | Roda a sincronização a cada commit. Ligar uma vez: `git config core.hooksPath .githooks`. |
 
 Os `.mp4` não ficam no git. Cada Reels final vai para o
 [Release](https://github.com/maugarciasa/insta-nallon/releases) do mês
@@ -33,7 +34,7 @@ Os `.mp4` não ficam no git. Cada Reels final vai para o
 ## Como os Reels são feitos
 
 A skill `/brag-instagram` grava o app rodando localmente com uma loja
-fictícia ("Aurora Celulares" ou a barbearia de demonstração), narra em pt-BR e
+fictícia (comércio, barbearia, clínica ou prestador de serviço), narra em pt-BR e
 sincroniza a legenda. A música de fundo é sintetizada por `trilhas.py`
 (só `numpy`), sem faixa de terceiros.
 

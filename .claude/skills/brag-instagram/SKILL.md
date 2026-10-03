@@ -49,50 +49,60 @@ Nunca capturar de produção nem de sessão logada com dados reais. Antes de
 renderizar, olhar cada still procurando nome, telefone, e-mail ou valor
 que pareça real.
 
-No Nallon, a loja fictícia "Aurora Celulares" (7 produtos, 4 serviços,
-7 clientes, 7 OS em status variados) vem de
-`~/.claude/skills/brag-instagram/semear-video.sql`. Idempotente; roda só
-no Supabase local:
+No Nallon há uma loja fictícia por nicho. Cada `.sql` fica nesta pasta, é
+idempotente e roda só no Supabase local:
+
+| Nicho | Loja | Arquivo | Login em `localhost:3000/entrar` |
+|---|---|---|---|
+| CG, AT | Aurora Celulares (7 produtos, 4 serviços, 7 clientes, 7 OS) | `semear-video.sql` | `carlos@video.local` |
+| BAR | Barbearia Ponto Certo (4 serviços, 3 profissionais, agenda de hoje e amanhã) | `semear-barbearia.sql` | `diego@video.local` |
+| CLI | Clínica Vida Plena (consultas, 3 profissionais, agenda de hoje e amanhã) | `semear-clinica.sql` | `helena@video.local` |
+| PS | Ar Frio Climatização (4 serviços, 3 técnicos, agenda de hoje e amanhã) | `semear-servicos.sql` | `andre@video.local` |
 
 ```bash
-docker exec -i supabase_db_sistema-connect psql -U postgres -d postgres < ~/.claude/skills/brag-instagram/semear-video.sql
+docker exec -i supabase_db_nallon psql -U postgres -d postgres < ~/.claude/skills/brag-instagram/semear-video.sql
 ```
 
-Rodando de um worktree sem `.env*`: copiar só o `.env.development.local`
-do checkout principal (aponta para `127.0.0.1:54321`). O `.env.local` de
-lá aponta para produção: nunca copiar. Subir o app com `preview_start`
-(`connect`), depois de `npm ci`.
+A senha de cada login está no cabeçalho do `.sql`. As três lojas com
+agenda têm página pública em `/agendar/<slug>` (o slug também está no
+cabeçalho). O banco local é zerado de vez em quando: se o login falhar,
+rodar o `.sql` de novo.
 
-Login em `localhost:3000/entrar`: `carlos@video.local`, senha no
-cabeçalho do `.sql`. Não usar o modo demonstração: localmente faltam
+Os quatro logins são administradores da própria loja. O caixa nasce
+fechado: abrir o caixa antes de gravar uma venda. Venda e caixa aberto ficam
+no banco depois do vídeo; o `.sql` não desfaz isso.
+
+Subir o app de dentro de `C:\dev\Nallon` (`npm run dev`, em segundo plano):
+o `preview_start` só acha o `launch.json` quando a sessão nasceu lá. Antes
+de capturar, conferir que o login funciona. Se der "Não conseguimos falar
+com o servidor", o `.env.development.local` aponta para uma porta sem
+Supabase: subir o app com `NEXT_PUBLIC_SUPABASE_URL` e
+`NEXT_PUBLIC_SUPABASE_ANON_KEY` na linha de comando, com os valores de
+`supabase status -o json`, sem editar nenhum `.env`. O `.env.local` aponta
+para produção: nunca usar nem copiar.
+
+Não usar o modo demonstração: localmente faltam
 `DEMO_LOJA_ID` e `DEMO_SENHA`. Erro de coluna ou constraint no `.sql`: o
 schema mudou; ajustar o `.sql` pelas migrations e testar trocando o nome
 da loja e o `commit` por `rollback` numa cópia.
 
-## Formato Reels e Direção de Arte SaaS Premium V2 (passos 2 e 3)
+## Direção visual (passos 2 e 3)
 
-No projeto Nallon, siga a direção de arte de `C:\dev\Insta Nallon\docs\direcao-visual-reels.md`; onde o resumo abaixo divergir dela, vale ela. Peça publicitária premium de software SaaS moderno (referência Linear, Apple, Stripe, Notion). Menos elementos, mais espaço, mais precisão e foco na interface.
+Antes do plano, ler `C:\dev\Insta Nallon\docs\direcao-visual-reels.md`
+inteiro. É a fonte única de formato, zona segura, capa, fundo, interface,
+moldura, composição, texto na tela, legenda, movimento e encerramento. Este
+arquivo não repete essas regras: traz só o que é de execução.
 
-- **Formato e Quadro:** Vertical 9:16 (1080 × 1920), 30 FPS. Preencher 100% do quadro. PROIBIDO criar barras pretas laterais ou superiores.
-- **Zona segura.** O app cobre o vídeo com nome do perfil, legenda do post e botões. Título, legenda, logo, badge e o ponto da interface que a cena demonstra ficam em x 65–1015, y 270–1250 (margens do guia da Meta: 14% no topo, 35% na base, 6% de cada lado). A interface pode continuar até y 1500, só como contexto. Abaixo de y 1000, nada importante à direita de x 960: ali fica a coluna de botões.
-- **Interface e Painel Flutuante:** A interface é o protagonista absoluto, 100% nítida e fiel (sem recriar botões, sem inventar dados, sem blur na UI). Reduzir drasticamente a aparência de "celular genérico": preferir a própria interface como um painel flutuante premium com borda ultrafina refinada (ou sem moldura pesada) e sombra natural suave profunda. A moldura jamais chama mais atenção que o software.
+- **Duração.** 20 a 30 s. Vale este número, não os 15 a 25 s da `/brag`.
+- **Layout de referência.** Título em y 282–368; painel da interface de y 430 a y 1240; legenda abaixo do painel, entre y 1280 e y 1500. A legenda nunca fica em cima da interface.
+- **Fontes e logo.** O `lint` exige `@font-face` local. Space Grotesk 700 e Geist estão em `C:\dev\Nallon\brag-output-2026-10-03-pdv\composition\assets\`, junto com a logo; copiar de lá.
+- **Passos da `/brag` que não se aplicam:** áudio-reativo, beat sync, espera de aprovação no `preview`, pôster tirado do render e `share-copy` de 1 a 3 frases.
 - **UI em pé.** Não encolher tela de desktop. Capturar o app em viewport de celular (390px de largura, escala 3) ou aproximar a câmera em uma coluna, um card ou um formulário por vez.
-- **Fundo Minimalista:** Fundo creme da marca (`#f5f1ea`), iluminação difusa quase imperceptível. O fundo desaparece visualmente para o sistema brilhar.
-- **Composição & Hierarquia:** Em cada momento no máximo: 1) uma mensagem principal; 2) a interface demonstrando; 3) um pequeno elemento secundário. Evitar poluição visual de badge + título + subtítulo + legenda gigante simultâneos.
-- **Títulos:** Curtos e focados no benefício ("Gestão em um só lugar"), com excelente kerning e espaçamento generoso. A marca Nallon não se repete em todas as cenas.
-- **Badges:** Pequenos, discretos, baixa altura e contraste moderado. Nunca competem com o título.
-- **Motion Design:** Câmera aproximando lentamente (zoom de 4% a 12%; até 15% no close de uma funcionalidade), reposicionamento sutil, parallax discreto, fade e slide suave (200 a 500 ms). A cada 1,5 a 3 segundos deve ocorrer uma mudança visual sutil (mudança de foco/aproximação). Sem bounce, shake, zoom agressivo ou efeitos chamativos.
-- **Gancho no primeiro segundo.** Frame 1 já mostra a mensagem ou o produto trabalhando. Logo só no fecho.
-- **Duração.** 20–30s; a fala define o ritmo.
 - **Loop.** O Reels repete sozinho. O último frame emenda no primeiro sem salto: mesmo fundo e mesma cor base do gancho, sem fade para preto. A música não termina em silêncio longo; sai junto com o último frame. A última fala fecha a ideia.
 
-## Encerramento obrigatório (projeto Nallon)
-
-Todo vídeo termina com a narração exata "Nallon. Gestão inteligente para o seu negócio."
-No encerramento, remover gradualmente a interface. Ficam só a logo do Nallon
-(ou o nome NALLON) e a frase "Gestão inteligente para o seu negócio.",
-centralizadas. A marca entra com animação discreta, de 0,8 a 1,5 s, e a cena
-dura até a fala terminar. Sem CTA nem efeitos luminosos. Nenhuma fala depois.
+A assinatura falada que encerra todo vídeo está em
+`C:\dev\Insta Nallon\CLAUDE.md`, seção "Encerramento obrigatório de todo
+vídeo". Nenhuma fala depois dela.
 
 ## Narração (passo 3, substitui a seção "Voiceover" da `/brag`)
 
@@ -200,18 +210,14 @@ storyboard com esses valores antes de compor.
 - Todo vídeo leva música ambiente de fundo, do primeiro ao último frame:
   instrumental, suave, sem letra e sem batida forte. Só sem música com
   `--no-music`. Usar `/media-use` para achar a faixa.
-- Música abaixa para 0,12–0,15 enquanto há fala e volta depois
-  (regra de ducking da `/brag`).
+- Música em volume 0,14 fixo quando a fala é quase contínua. Só sobe
+  (até 0,35) em trecho de mais de 2 s sem fala.
 
-### Legenda Editorial Premium (V2)
+### Legenda na tela
 
-Quem assiste sem som precisa entender o vídeo. Proibido criar caixas pretas grandes ocupando a largura inferior.
+Aparência, tamanho e posição: seção 7 da direção visual. Na execução:
 
-- **Formato compacto editorial:** ocupar entre 55% e 70% da largura do vídeo (max 680-720px), altura mínima necessária, padding equilibrado e cantos arredondados discretos (18-22px). Fundo escuro levemente translúcido (`rgba(22,19,16,0.86)` com `backdrop-filter: blur(14px)`) com sombra muito suave.
-- **Frases curtas:** evitar frases longas de 2 ou 3 linhas quando uma frase enxuta transmite a ideia (ex: "Ainda usa vários sistemas?").
-- **Destaque exclusivo:** destacar no máximo UMA expressão importante por frase (em tom âmbar #e8a33d). Não usar múltiplas cores simultâneas.
-- Contraste: cumpre WCAG AA (≥ 4,5:1).
-- Posição fixa em todas as cenas, dentro da zona segura: a base da caixa fica em y 1250 ou acima. Não cobrir a parte da interface que a cena está mostrando.
+- A legenda nunca fica em cima da interface, de moldura ou de outro texto. Fica na faixa própria, abaixo do painel.
 - A frase da cena aparece enquanto é falada: entra com a fala e sai com ela.
 - Calcular o contraste do par de cores no plano, antes de compor (o `hyperframes check` exige 4,5:1). O destaque em âmbar também passa por essa conta contra o fundo da caixa.
 - A caixa da legenda não se sobrepõe a outro texto da cena (`content_overlap` no `check`): reservar o lugar dela no storyboard.
@@ -273,9 +279,11 @@ Erros que já custaram tempo em execuções anteriores:
 
 ### Capa
 
-`brag.jpg` em 1080x1920. O conteúdo principal cabe no recorte 3:4 central
-(y 240–1680): é o que aparece na grade do perfil. A capa é escolhida no
-envio; o Instagram não deixa trocar depois de publicar.
+`brag.jpg` em 1080x1920, montada no modelo fixo da seção "Capa" da direção
+visual (pílula do setor, título, painel da interface e marca, sempre nos
+mesmos lugares). É um HTML separado (`capa.html`), fotografado em
+1080x1920, fora da composição: não vira cena do vídeo. Gravada como frame 0
+do `brag.mp4`, é a única exceção à regra "logo só no encerramento".
 
 ### Volume
 
@@ -283,7 +291,7 @@ Depois de gravar a capa como frame 0, normalizar para o Instagram
 (vídeo copiado, frame 0 preservado). De `<output-dir>`:
 
 ```bash
-ffmpeg -y -i brag.mp4 -c:v copy -af loudnorm=I=-14:TP=-1:LRA=11 \
+ffmpeg -y -i brag.mp4 -c:v copy -af loudnorm=I=-14:TP=-1.5:LRA=11 \
   -ar 48000 -c:a aac -b:a 192k -movflags +faststart brag.norm.mp4 \
   && mv brag.norm.mp4 brag.mp4
 ```
@@ -306,10 +314,28 @@ ffmpeg -y -i brag.mp4 -c:v copy -af loudnorm=I=-14:TP=-1:LRA=11 \
   mais. Duração de 20 a 30 s.
 - Volume: `ffmpeg -i brag.mp4 -af loudnorm=print_format=summary -f null -`
   dá cerca de -14 LUFS e pico ≤ -1 dBTP.
-- Stills de cada cena: título, legenda e o ponto demonstrado dentro da zona
-  segura (x 65–1015, y 270–1250), legenda sincronizada com a fala, nada
-  cortado, quadro cheio e sem barras pretas.
-- `brag.jpg` legível no recorte 3:4 central.
-- Loop: `ffmpeg -sseof -0.04 -i brag.mp4 -frames:v 1 fim.png` e o frame 1
-  lado a lado não mostram salto de fundo ou cor.
+- Zona segura: gerar a folha de conferência e olhar com Read. O retângulo
+  vermelho (x 65–1015, y 270–1240) contém título, logo e o painel inteiro.
+  O retângulo amarelo (y 1280–1500) contém a legenda. Fora dos dois, só
+  fundo.
+
+  ```bash
+  ffmpeg -y -v error -i brag.mp4 -vf "fps=1/2,drawbox=65:270:950:970:red:4,drawbox=65:1280:950:220:yellow:4,scale=360:-1,tile=5x3" -frames:v 1 zona-segura.jpg
+  ```
+
+  Sai um quadro a cada 2 s, até 15 (30 s de vídeo). Quadro que cair em
+  transição mostra duas telas sobrepostas: é esperado.
+- Legenda fora da interface: em nenhum quadro a caixa da legenda encosta
+  no painel. Se encostar, o vídeo não está pronto.
+- Stills de cada cena: legenda sincronizada com a fala, nada cortado,
+  quadro cheio e sem barras pretas.
+- `brag.jpg` segue o modelo fixo de capa e é legível no recorte 3:4 central.
+- Loop: o último quadro e o frame 1 (o primeiro depois da capa), lado a
+  lado, não mostram salto de fundo ou cor.
+
+  ```bash
+  ffmpeg -y -v error -sseof -0.04 -i brag.mp4 -frames:v 1 fim.png
+  ffmpeg -y -v error -i brag.mp4 -vf "select=eq(n\,1)" -frames:v 1 inicio.png
+  ffmpeg -y -v error -i fim.png -i inicio.png -filter_complex hstack loop.jpg
+  ```
 - `git status` no repositório não lista nada de `brag-output`.

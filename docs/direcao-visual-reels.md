@@ -31,9 +31,18 @@ pode ser turbinado sem refazer.
 
 | Faixa do quadro | O que pode ficar |
 |---|---|
-| x 65–1015, y 270–1250 | Título, legenda, logo, badge e o ponto da interface que a cena demonstra |
-| y 1250–1500 | Continuação da interface, só como contexto |
+| x 65–1015, y 270–1240 | Título, logo, badge e o painel da interface, inteiro |
+| x 65–1015, y 1280–1500 | Legenda, sozinha sobre o fundo |
 | y 0–270 e y 1500–1920 | Só fundo |
+
+A legenda nunca fica em cima da interface, nem de moldura de celular, nem
+de outro texto. O painel termina em y 1240 ou acima; a legenda fica abaixo
+dele, com pelo menos 40 px de respiro.
+
+A faixa da legenda fica abaixo da margem de anúncio (y 1250). No Reels
+orgânico ela aparece inteira. Se o vídeo for turbinado, a legenda do post
+pode cobrir parte dela: nesse caso, exporte uma versão com a legenda na
+tela desligada.
 
 Abaixo de y 1000, nada importante à direita de x 960: ali fica a coluna de
 botões (curtir, comentar, enviar). Esse recuo é prática do projeto, não
@@ -43,6 +52,19 @@ número oficial.
 
 - 1080 × 1920, com o conteúdo principal no recorte 3:4 central (y 240–1680), que é o que a grade do perfil mostra.
 - A capa é escolhida no envio. O Instagram não deixa trocar depois de publicar.
+
+Toda capa usa o mesmo modelo, para a grade do perfil ficar uniforme. Só
+mudam o setor, o título e a tela.
+
+| Elemento | Posição e estilo |
+|---|---|
+| Fundo | Creme `#f5f1ea`, liso |
+| Pílula do setor | Canto em x 90, y 330. Fundo âmbar `#e8a33d`, texto `#1a1714`, Geist semibold 34 px, caixa alta (ex.: "PDV") |
+| Título | x 90, topo em y 420, largura até 900 px. Space Grotesk bold 104 px, `#1a1714`, no máximo 2 linhas e 5 palavras. Diz o benefício, sem a marca |
+| Painel da interface | Centralizado, 900 px de largura, de y 760 a y 1480. Tela real do setor, com borda ultrafina, cantos de 28 px e a sombra do vídeo |
+| Marca | "Nallon" em Space Grotesk bold 44 px, `#1a1714`, x 90, base em y 1600 |
+
+Nada além desses cinco elementos: sem legenda, badge, preço ou seta.
 
 ## 2. Fundo
 
@@ -99,7 +121,7 @@ Quem assiste sem som precisa entender o vídeo.
 - Legenda editorial compacta, nunca uma caixa preta de largura total.
 - Largura de 55% a 70% do quadro (até 720 px), altura mínima, cantos de 18 a 22 px, sombra muito suave.
 - Fundo escuro translúcido: `rgba(22,19,16,0.86)` com `backdrop-filter: blur(14px)`. Texto creme. Contraste mínimo de 4,5:1.
-- Posição fixa em todas as cenas, com a base da caixa em y 1250 ou acima.
+- Posição fixa em todas as cenas: abaixo do painel, entre y 1280 e y 1500. Nunca em cima da interface.
 - Frase curta. "Ainda usa vários sistemas?", não "Sua empresa ainda usa vários sistemas separados?".
 - No máximo uma expressão destacada por frase, em âmbar. Com legenda palavra por palavra, o destaque é a palavra falada.
 
@@ -134,7 +156,9 @@ fala da assinatura terminar. Sem CTA, sem efeito luminoso.
 ## 10. Revisão antes de exportar
 
 - Quadro em 9:16, sem barras pretas.
-- Título, legenda, logo e o ponto demonstrado da interface dentro da zona segura (x 65–1015, y 270–1250).
+- Título, logo e painel inteiros em x 65–1015, y 270–1240; legenda entre y 1280 e y 1500. A folha de conferência da `/brag-instagram` (`zona-segura.jpg`) mostra isso de uma vez.
+- Em nenhum quadro a legenda encosta na interface.
+- Capa no modelo fixo da seção 1.
 - Alinhamentos, margens e espaçamentos consistentes.
 - Interface nítida e legível; proporção e sombra do painel coerentes entre as cenas.
 - Legenda sincronizada, compacta e com um destaque só.

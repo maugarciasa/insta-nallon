@@ -55,8 +55,9 @@ Loja de demonstração por nicho (semeada só no Supabase local):
 | Nicho | Loja | Semente |
 |---|---|---|
 | CG, AT | Aurora Celulares | `semear-video.sql` da `/brag-instagram` |
-| BAR | barbearia fictícia | `semear-barbearia.sql` da `/brag-instagram` |
-| CLI, PS | não existe ainda | parar e pedir ao usuário antes de criar uma semente nova |
+| BAR | Barbearia Ponto Certo | `semear-barbearia.sql` da `/brag-instagram` |
+| CLI | Clínica Vida Plena | `semear-clinica.sql` da `/brag-instagram` |
+| PS | Ar Frio Climatização | `semear-servicos.sql` da `/brag-instagram` |
 
 ## 2. Roteiro
 
@@ -124,9 +125,11 @@ Para cada vídeo, de `C:\dev\Nallon\brag-output-<data>-<setor>`:
 Acrescentar uma linha por vídeo em `planejamento/registro-videos.md`, com
 as duas últimas colunas vazias até o post sair:
 `| <data> | <nome do setor> | <nicho> | <data>-<setor> | | |`.
-Se o setor tinha pendência em `semana-NN.md`, riscar a pendência.
+Se o setor tinha pendência em `semana-NN.md`, riscar a pendência e trocar
+a situação da linha na tabela do topo para "Pronto".
 
-Mostrar os vídeos ao usuário com `SendUserFile` (mp4 e capa). Com o ok dele,
+Mostrar os vídeos ao usuário (mp4 e capa), com `SendUserFile` quando a
+ferramenta existir; senão, dar os caminhos. Com o ok dele,
 de dentro de `<projeto>`:
 
 1. Commit (`feat(videos): <setor-a> e <setor-b> de <data>`) e push. Entram
@@ -160,8 +163,9 @@ Passar esta lista junto com os vídeos:
 - Cada vídeo segue `<projeto>/docs/direcao-visual-reels.md` e passa na revisão da seção 10 dela.
 - Cada vídeo passou na checagem da `/brag-instagram` (formato, volume, zona
   segura, capa, loop) e termina com a assinatura exata do `CLAUDE.md`.
-- Em cada still, título, legenda e o ponto demonstrado da interface estão
-  em x 65–1015, y 270–1250.
+- A folha `zona-segura.jpg` de cada vídeo mostra título e painel dentro de
+  x 65–1015, y 270–1240, e a legenda entre y 1280 e y 1500, sem encostar na
+  interface.
 - A legenda do post tem primeira linha de até 125 caracteres, "link na
   bio" e de 3 a 5 hashtags, com `#nallon`.
 - `videos/` tem `mp4`, `jpg` e `txt` de cada setor, com o nome certo, e o `mp4` está no Release do mês.

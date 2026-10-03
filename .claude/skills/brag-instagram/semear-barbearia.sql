@@ -1,5 +1,5 @@
 -- Barbearia fictícia do Nallon para gravar vídeo de agenda. Só no Supabase LOCAL:
---   docker exec -i supabase_db_sistema-connect psql -U postgres -d postgres < semear-barbearia.sql
+--   docker exec -i supabase_db_nallon psql -U postgres -d postgres < semear-barbearia.sql
 -- Idempotente: se a loja já existe, não faz nada.
 -- Login no app local: diego@video.local / ponto-certo-video-2026
 -- (credencial sintética; o banco só escuta em 127.0.0.1).
@@ -33,7 +33,7 @@ set local session_replication_role = replica;
 
 insert into public.usuarios (id, loja_id, perfil_id, nome, email, ativo, telefone)
   values (:'usuario', :loja, (select id from public.perfis where slug = 'admin'), 'Diego', 'diego@video.local', true, '11999990000')
-  on conflict (id) do update set loja_id = excluded.loja_id, ativo = true;
+  on conflict (id) do update set loja_id = excluded.loja_id, perfil_id = excluded.perfil_id, ativo = true;
 
 insert into public.servicos (loja_id, nome, descricao, preco, duracao_minutos, agendamento_online) values
   (:loja, 'Corte masculino', 'Corte na máquina ou na tesoura', 45, 30, true),

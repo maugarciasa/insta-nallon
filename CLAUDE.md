@@ -25,7 +25,7 @@ regra aqui, refaça o trecho correspondente lá.
 - `amostras-voz/` e `amostras-som/`: áudio de trabalho, fora do git. As trilhas de amostra saem de `trilhas.py`.
 - `.claude/skills/reels-nallon/`: skill própria do fluxo diário (`/reels-nallon`). Traz `trilhas.py`, que sintetiza as 5 trilhas ambiente.
 - `.claude/skills/brag-instagram/`: skill própria que gera cada Reels. É a cópia oficial: `~/.claude/skills/brag-instagram` é junction para cá.
-- `.agents/skills/`: cópia das duas skills para o Codex. Edite só em `.claude/skills/` e rode `bash sincronizar-skills.sh`, que copia e troca `~/.claude/` por `~/.Codex/`.
+- `.agents/skills/`: cópia das duas skills para o Codex. Edite só em `.claude/skills/`: o hook de `.githooks/pre-commit` roda `sincronizar-skills.sh` a cada commit, que copia e troca `~/.claude/` por `~/.Codex/`. Em clone novo, ligue o hook uma vez com `git config core.hooksPath .githooks`.
 
 As outras skills de `.claude/skills` e `.agents/skills` são de terceiros,
 instaladas com `npx skills`, e ficam fora do git.
@@ -76,8 +76,8 @@ chama a `/brag-instagram` (Reels 1080x1920, narração pt-BR, legenda
 sincronizada), copia para `videos/` e registra.
 
 - **Onde rodar.** Tudo o que a `/brag-instagram` manda (git, app, Supabase, `brag-output/`) roda dentro de `C:\dev\Nallon`: é lá que ficam o código e o repositório.
-- **Tela.** Captura só do app local, com loja fictícia: "Aurora Celulares" para CG e AT, a barbearia de demonstração para BAR. Para CLI e PS ainda não há semente: pare e pergunte antes de criar. Nunca capture produção nem dados reais.
-- **Visual.** Siga `docs/direcao-visual-reels.md`.
+- **Tela.** Captura só do app local, com loja fictícia: "Aurora Celulares" para CG e AT, "Barbearia Ponto Certo" para BAR, "Clínica Vida Plena" para CLI e "Ar Frio Climatização" para PS. Cada uma vem de um `semear-*.sql` da `/brag-instagram`. Nunca capture produção nem dados reais.
+- **Visual.** Siga `docs/direcao-visual-reels.md`. A legenda nunca fica em cima da interface: o painel termina em y 1240 ou acima e a legenda ocupa a faixa de y 1280 a y 1500, sozinha sobre o fundo.
 - **Voz.** Narração sempre com a `narrador` do OmniVoice (perfil em `~/.hyperframes/vozes/narrador/`): voz masculina sintética, criada por descrição. Não troque a voz sem pedido.
 - **Trilha.** Música ambiente do primeiro ao último quadro, com uma das 5 trilhas de `trilhas.py`: `1-aurora` (padrão), `2-vidro`, `3-pulso`, `4-manha`, `5-horizonte`. Todas resolvem na tônica nos últimos segundos, junto com a assinatura.
 - **Entrega.** Copie `brag.mp4`, `brag.jpg` e `share-copy.txt` para `videos/` com o nome do dia e do setor. Depois do ok, faça o commit da capa, da legenda, do roteiro e do registro, e suba o `.mp4` para o Release do mês.

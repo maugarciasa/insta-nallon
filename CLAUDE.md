@@ -70,16 +70,16 @@ Setor marcado Pro: a fala e a legenda dizem "no plano Pro".
 
 ## Como fazer cada vídeo
 
-Use a skill `/reels-nallon`: ela escolhe os setores, escreve o roteiro,
-chama a `/brag` com as regras do `producao.md` (Reels 1080x1920, narração pt-BR, legenda
-sincronizada), copia para `videos/` e registra.
+Use a skill `/reels-nallon`. Ela escolhe os setores, escreve o roteiro, gera
+o vídeo com a `/brag` e as regras de `producao.md`, copia para `videos/` e
+registra. O passo a passo (onde rodar, trilhas, entrega, checagem) fica na
+skill. Aqui ficam só as regras que valem sempre:
 
-- **Onde rodar.** Tudo o que a `/brag` e o `producao.md` mandam (git, app, Supabase, `brag-output/`) roda dentro de `C:\dev\Nallon`: é lá que ficam o código e o repositório.
-- **Tela.** Captura só do app local, com loja fictícia: "Aurora Celulares" para CG e AT, "Barbearia Ponto Certo" para BAR, "Clínica Vida Plena" para CLI e "Ar Frio Climatização" para PS. Cada uma vem de um `semear-*.sql` da `/reels-nallon`. Nunca capture produção nem dados reais.
+- **Tela.** Captura só do app local, com loja fictícia: "Aurora Celulares" para CG e AT, "Barbearia Ponto Certo" para BAR, "Clínica Vida Plena" para CLI e "Ar Frio Climatização" para PS. Nunca capture produção nem dados reais.
 - **Visual.** Siga `docs/direcao-visual-reels.md`. A legenda nunca fica em cima da interface: o painel termina em y 1240 ou acima e a legenda ocupa a faixa de y 1280 a y 1500, sozinha sobre o fundo.
-- **Voz.** Narração sempre com a `narrador` do OmniVoice (perfil em `~/.hyperframes/vozes/narrador/`): voz masculina sintética, criada por descrição. Não troque a voz sem pedido.
-- **Trilha.** Música ambiente do primeiro ao último quadro, com uma das 5 trilhas de `trilhas.py`: `1-aurora` (padrão), `2-vidro`, `3-pulso`, `4-manha`, `5-horizonte`. Todas resolvem na tônica nos últimos segundos, junto com a assinatura.
-- **Entrega.** Copie `brag.mp4`, `brag.jpg` e `share-copy.txt` para `videos/` com o nome do dia e do setor. Depois do ok, faça o commit da capa, da legenda, do roteiro e do registro, e suba o `.mp4` para o Release do mês.
+- **Voz.** Narração sempre com a `narrador` do OmniVoice. Não troque a voz sem pedido.
+- **Trilha.** Música ambiente do primeiro ao último quadro, uma das 5 de `trilhas.py` (`1-aurora` é a padrão).
+- **Pronto.** O vídeo só vale depois da checagem final do `producao.md`. O commit (capa, legenda, roteiro, registro) e o envio do `.mp4` ao Release do mês só saem depois do ok do usuário.
 
 ## Encerramento obrigatório de todo vídeo
 

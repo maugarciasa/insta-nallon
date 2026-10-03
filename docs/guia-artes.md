@@ -1,4 +1,8 @@
-# Prompt padrão Nallon: versão econômica (1k)
+# Guia de artes: prompt padrão do Magnific
+
+Vale para carrossel, post único, story e capa avulsa. A capa de cada Reels
+já sai do próprio vídeo (`videos/AAAA-MM-DD-<setor>.jpg`). As regras de
+conteúdo e a identidade ficam no `CLAUDE.md` da raiz.
 
 ## Configuração fixa no Magnific
 
@@ -29,7 +33,7 @@ Custo real medido: 30 créditos por arte em `low 1k` com referência de estilo.
 4. Troque os textos entre `[ ]`.
 
 Numeração do carrossel: o slide 2 é o sinal "1". Na capa, o número grande é o total de sinais.
-Salve as artes em `artes/` com o nome `dia-peça-slide.png`. Exemplo: `seg-carrossel-02.png`.
+Salve as artes em `artes/semana-NN/` com o nome `dia-peça-slide.png`. Exemplo: `artes/semana-01/seg-carrossel-02.png`.
 
 ---
 

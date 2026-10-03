@@ -11,7 +11,7 @@ Tudo aqui vem do que o sistema faz hoje. Não inventei número, depoimento nem c
 | Ter, Qui, Sáb | Stories | Todos | Os três |
 
 Identidade visual: âmbar `#e8a33d`, fundo creme `#f5f1ea`, texto `#1a1714`. Títulos em Space Grotesk, texto em Geist.
-Use o mesmo modelo em todos os slides do carrossel.
+Use o mesmo modelo em todos os slides do carrossel. As artes prontas ficam em `artes/semana-01/`.
 
 ---
 
@@ -152,4 +152,5 @@ O link de agendamento existe nos dois planos. Os lembretes automáticos são só
 ## Pendências antes de publicar
 
 1. ~~Coloque na bio o link do teste grátis (nallon.com.br/planos).~~ Feito.
-2. Gere o Reels de quarta com `/brag-instagram`, setor PDV.
+2. Gere o Reels de quarta com `/reels-nallon`, setor PDV.
+3. Na legenda de sexta, troque `[WhatsApp comercial]` pelo número na hora de publicar.

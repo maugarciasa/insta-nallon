@@ -2,6 +2,8 @@
 
 Copie tudo abaixo da linha e cole na outra IA. Troque só os campos entre `[colchetes]` na seção "Pedido de hoje".
 
+Este briefing repete as regras do `CLAUDE.md` e de `docs/direcao-visual-reels.md`, porque a outra IA não lê o repositório. Ao mudar uma regra lá, refaça o trecho daqui.
+
 ---
 
 Você vai produzir um Reels de 20 a 30 segundos para o Instagram do **Nallon**, um sistema de gestão 100% web para negócios que **vendem no balcão e/ou atendem com hora marcada**: comércio em geral, assistências técnicas, barbearias e salões, clínicas e consultórios (médicos e odontológicos) e outros prestadores de serviço. Siga este briefing à risca: todos os vídeos da marca precisam ter o mesmo padrão.
@@ -49,16 +51,22 @@ Vocabulário: use os termos que o sistema usa na tela ("cliente", "agendamento",
 - Vertical **1080x1920**, 30 fps, H.264, áudio AAC 48 kHz.
 - **Duração 20 a 30 s.** A fala define o ritmo.
 - **Área segura do Instagram:** todo texto e interface importante dentro de x 60–960 e y 250–1500. O Instagram cobre 250 px no topo, 420 px na base, 120 px à direita e 60 px à esquerda.
+- **Quadro cheio:** o vídeo preenche 100% do quadro. Sem barras pretas e sem vídeo vertical dentro de outro canvas.
 - **Gancho no primeiro segundo:** o quadro 1 já mostra o produto funcionando. Sem logo abrindo o vídeo.
 
-## Layout padrão (todo vídeo tem esta cara)
+## Direção visual (todo vídeo tem esta cara)
 
-- **Fundo:** creme `#f5f1ea`, com um brilho suave âmbar `#e8a33d` no canto superior direito.
-- **Título** centralizado no topo (y ≈ 262): nome do recurso em `#1a1714`, Geist 800, ~46 px. Se for recurso Pro, ao lado uma etiqueta "PRO" com fundo âmbar `#e8a33d` e texto `#1a1714`.
-- **Celular vertical**, sem moldura preta: tela branca com cantos arredondados (raio 64), largura ~585 px, altura ~1160 px, centralizado, do y 340 ao y 1500. Só uma sombra suave e um contorno de 2 px a 10% de preto. As capturas do app entram em proporção de celular 360x720, sem esticar.
-- **Legenda em faixa escura opaca** (`#1a1714`, cantos 40 px), x 60–960, y 1300–1490, sobre a base do celular. Texto creme `#f5f1ea`, Geist 700, 58 px, no máximo 2 linhas, sempre no mesmo lugar. A palavra que está sendo falada fica em âmbar `#e8a33d`. A legenda mostra a frase enquanto ela é falada e some com ela. Contraste mínimo 4,5:1.
-- Cortes entre telas com fusão curta (~0,25 s). Leve respiro de zoom (até 1,5%) no celular. Nada de texto piscando: cada frase fica na tela tempo suficiente para ler.
-- Fontes da marca: títulos Space Grotesk (se não tiver o arquivo, Geist), texto Geist. Cores: âmbar `#e8a33d`, creme `#f5f1ea`, texto `#1a1714`.
+Peça publicitária de software SaaS moderno, no padrão de Linear, Apple, Stripe e Notion. A interface real é a protagonista. Menos elementos, mais espaço. Não pode parecer template, Canva, slide ou vídeo automático de IA.
+
+- **Fundo:** creme `#f5f1ea`, só com luz difusa e gradiente quase imperceptível. Sem elemento decorativo.
+- **Interface:** fiel à real e 100% nítida. Não recrie botões, não mude textos, números ou layout, não aplique blur forte sobre ela.
+- **Moldura:** a própria interface como painel flutuante, com borda ultrafina, cantos arredondados e sombra suave. Se usar moldura de celular, fina e sem borda preta grossa. As capturas entram sem esticar.
+- **Composição:** em cada momento, no máximo uma mensagem principal, a interface demonstrando e um elemento secundário pequeno.
+- **Título:** curto e sobre o benefício ("Gestão em um só lugar"), em `#1a1714`, semibold ou bold, sem encostar no painel. A marca não se repete em todas as cenas. Recurso Pro leva uma etiqueta "PRO" pequena, fundo âmbar `#e8a33d` e texto `#1a1714`.
+- **Legenda:** compacta, de 55% a 70% da largura (até 720 px), cantos de 18 a 22 px, fundo escuro translúcido (`rgba(22,19,16,0.86)`), texto creme, sempre no mesmo lugar e acima de y 1500. Frase curta. A palavra que está sendo falada fica em âmbar `#e8a33d`; nenhuma outra cor de destaque. A legenda mostra a frase enquanto ela é falada e some com ela. Contraste mínimo 4,5:1. Nunca uma caixa preta de largura total.
+- **Movimento:** sutil e contínuo. Câmera aproximando devagar (zoom de 4% a 12%), parallax discreto, fade e slide de poucos pixels, transições de 200 a 500 ms. A cada 1,5 a 3 s, uma mudança visual pequena. Sem bounce, shake, zoom agressivo ou texto piscando.
+- **Demonstração:** mostre o contexto da tela, leve a câmera até a funcionalidade, amplie de 8% a 15%, escureça de leve o resto, execute a ação real e mostre o resultado. Sem círculos, setas ou marcações.
+- Fontes da marca: títulos Space Grotesk (se não tiver o arquivo, Geist), texto Geist. Cores: âmbar `#e8a33d`, creme `#f5f1ea`, texto `#1a1714`. O âmbar aparece com moderação.
 
 ## Estrutura do roteiro
 
@@ -77,13 +85,13 @@ A última fala do vídeo é exatamente:
 
 - Sem alterar, abreviar ou variar. Nenhuma frase depois dela.
 - Tom profissional, seguro, moderno e natural. Sem pressa, com uma pausa curta depois de "Nallon".
-- Cena final **limpa e premium**: fundo creme, a **logo do Nallon** (quatro blocos que formam um "N", cor `#1a1714`, ~240 px) e o texto da assinatura. Nada de celular, título, faixa de legenda, oferta ou outra informação. A logo e o texto entram junto com a fala.
+- Cena final **limpa e premium**: a interface sai aos poucos e ficam só o fundo creme, a **logo do Nallon** (quatro blocos que formam um "N", cor `#1a1714`, ~240 px) e o texto da assinatura, centralizados. Nada de celular, título, badge, oferta ou efeito luminoso. A marca entra junto com a fala, com animação discreta de 0,8 a 1,5 s, e a cena dura até a fala terminar.
 - A oferta ("teste grátis", "link na bio") vai **antes** da assinatura ou só na legenda do post.
 
 ## Áudio
 
-- **Narração** em português do Brasil, um narrador só, a mesma voz do começo ao fim. A voz oficial da marca é a `minha-voz` (clone da voz do dono). Se você não tiver acesso a ela, avise antes de usar outra voz.
-- **Música ambiente** de fundo do primeiro ao último quadro: instrumental, suave, sem letra e sem batida forte, em volume baixo (~0,12 a 0,15 da narração). Fade de saída no fim. Só sem música se eu pedir.
+- **Narração** em português do Brasil, um narrador só, a mesma voz do começo ao fim. A voz oficial da marca é a `narrador` (masculina, sintética, grave e calma). Se você não tiver acesso a ela, avise antes de usar outra voz.
+- **Música ambiente** de fundo do primeiro ao último quadro: instrumental, suave, sem letra e sem batida forte, em volume baixo (~0,12 a 0,15 da narração). Ela resolve no acorde final junto com a assinatura e sai em fade. Só sem música se eu pedir. Se você não tiver uma faixa assim, entregue sem música e avise: eu coloco a trilha da marca.
 - Poucos efeitos sonoros, discretos (um clique suave ao confirmar uma ação). Nada estridente.
 - Volume final cerca de -14 LUFS, pico até -1 dBTP.
 
@@ -100,13 +108,14 @@ Em português, neste formato:
 Entregue estes arquivos, com o mesmo nome-base `AAAA-MM-DD-<tema>`:
 
 - `.mp4`: o vídeo final.
-- `.jpg`: capa 1080x1920, com o conteúdo principal no recorte central 3:4 (y 240–1680). Use um quadro em que a legenda e o celular estejam assentados. O primeiro quadro do mp4 deve ser essa capa.
+- `.jpg`: capa 1080x1920, com o conteúdo principal no recorte central 3:4 (y 240–1680). Use um quadro em que a legenda e a interface estejam assentadas. O primeiro quadro do mp4 deve ser essa capa.
 - `.txt`: a legenda do post.
 - Uma lista curta com: o roteiro final (fala por cena), o que foi mostrado na tela e qualquer ponto em que você se desviou deste briefing.
 
 ## Checagem antes de dizer que terminou
 
-- [ ] 1080x1920, 30 fps, 20–30 s.
+- [ ] 1080x1920, 30 fps, 20–30 s, quadro cheio e sem barras pretas.
+- [ ] Interface nítida e fiel, e nenhuma cena parada por mais de 3 s.
 - [ ] Texto e interface dentro de x 60–960, y 250–1500.
 - [ ] A legenda está sincronizada com a fala e nada está cortado.
 - [ ] Sem dado real na tela e sem recurso que o Nallon não tem.

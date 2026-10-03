@@ -2,23 +2,33 @@
 
 Marketing do Nallon no Instagram: artes de feed e stories, e Reels.
 O código do sistema fica em `C:\dev\Nallon`. Esta pasta guarda só o
-planejamento e as peças prontas. É um repositório git público:
-nada de dado real, credencial ou material bruto (fotos e vídeos de câmera
-ficam fora, no `.gitignore`).
+planejamento e as peças prontas.
+
+O repositório git é público. Não entram: dado real, credencial, telefone,
+material bruto de câmera, áudio de trabalho nem `.mp4` (ver `.gitignore`).
 
 Este arquivo é a fonte única das regras. O `AGENTS.md` só aponta para cá.
+Onde outro arquivo divergir deste, vale este. O `docs/prompt-video-nallon.md`
+repete as regras de propósito, porque é colado em outra IA: ao mudar uma
+regra aqui, refaça o trecho correspondente lá.
 
 ## Arquivos
 
 - `docs/guia-artes.md`: prompt padrão do Magnific (estilo fixo, blocos por tipo de peça, regra de custo). Leia antes de gerar qualquer arte.
-- `docs/prompt-video-nallon.md`: briefing de Reels para outra IA.
+- `docs/direcao-visual-reels.md`: direção visual obrigatória dos Reels. Leia antes de compor qualquer vídeo.
+- `docs/prompt-video-nallon.md`: briefing de Reels para colar em outra IA.
 - `planejamento/semana-NN.md`: plano de cada semana (dia, formato, nicho, objetivo, textos e legendas).
-- `planejamento/roteiros/<setor>.md`: roteiro de cada Reels, quando houver.
-- `planejamento/registro-videos.md`: um registro por vídeo feito. Serve para escolher o setor do próximo.
-- `artes/`: artes geradas, nome `dia-peça-slide.png`.
-- `videos/`: Reels prontos, nome `AAAA-MM-DD-<setor>.mp4` (setor em uma palavra: `pdv`, `caixa`, `agenda`…), com `.jpg` (capa) e `.txt` (legenda do post) de mesmo nome.
-- `.claude/skills/brag-instagram/`: skill própria que gera os Reels. É a cópia oficial: `~/.claude/skills/brag-instagram` é junction para cá. A de `.agents/skills/` (Codex) é a mesma com `~/.claude/` trocado por `~/.Codex/`; ao editar uma, refazer a outra.
-- `.claude/skills/reels-nallon/`: skill própria do fluxo diário (escolhe os 2 setores, gera, copia, registra e versiona). Traz `trilhas.py`, que sintetiza as 5 trilhas ambiente. A cópia em `.agents/skills/` é idêntica; ao editar uma, copiar para a outra. As outras skills de `.claude/skills` e `.agents/skills` são de terceiros, instaladas com `npx skills`, e ficam fora do git.
+- `planejamento/roteiros/<setor>.md`: roteiro de cada Reels.
+- `planejamento/registro-videos.md`: uma linha por vídeo feito. Serve para escolher o setor do próximo.
+- `artes/semana-NN/`: artes da semana, nome `dia-peça-slide.png` (ex.: `seg-carrossel-02.png`).
+- `videos/`: Reels prontos, nome `AAAA-MM-DD-<setor>` (setor em uma palavra: `pdv`, `caixa`, `agenda`…). O git guarda a capa (`.jpg`) e a legenda do post (`.txt`). O `.mp4` fica só na máquina e vai para o Release do mês no GitHub (`reels-AAAA-MM`).
+- `amostras-voz/` e `amostras-som/`: áudio de trabalho, fora do git. As trilhas de amostra saem de `trilhas.py`.
+- `.claude/skills/reels-nallon/`: skill própria do fluxo diário (`/reels-nallon`). Traz `trilhas.py`, que sintetiza as 5 trilhas ambiente.
+- `.claude/skills/brag-instagram/`: skill própria que gera cada Reels. É a cópia oficial: `~/.claude/skills/brag-instagram` é junction para cá.
+- `.agents/skills/`: cópia das duas skills para o Codex. Edite só em `.claude/skills/` e rode `bash sincronizar-skills.sh`, que copia e troca `~/.claude/` por `~/.Codex/`.
+
+As outras skills de `.claude/skills` e `.agents/skills` são de terceiros,
+instaladas com `npx skills`, e ficam fora do git.
 
 ## Vídeos: 2 por dia, setores diferentes
 
@@ -28,7 +38,16 @@ Este arquivo é a fonte única das regras. O `AGENTS.md` só aponta para cá.
 4. Cada vídeo mostra um setor só, do gancho ao fecho.
 5. Registre cada vídeo em `planejamento/registro-videos.md` assim que ficar pronto.
 
-Nichos: AT (assistência técnica), CG (comércio geral), PS (prestadores de serviço), BAR (barbearias e salões), CLI (clínicas e consultórios, médicos e odontológicos). O Nallon não é prontuário: para clínica mostra agenda, clientes, caixa e financeiro. O prompt para outra IA está em `prompt-video-nallon.md`.
+Vídeo extra (institucional ou de recurso fora da lista, como o Lilo AI
+Assistant): só a pedido. Não conta no ciclo nem na cota de 2 por dia. O nome
+usa o tema no lugar do setor (`AAAA-MM-DD-lilo`) e o registro marca
+"extra" na coluna Setor.
+
+Nichos: AT (assistência técnica), CG (comércio geral), PS (prestadores de
+serviço), BAR (barbearias e salões), CLI (clínicas e consultórios, médicos e
+odontológicos). O Nallon não é prontuário: para clínica mostra agenda,
+clientes, caixa e financeiro.
+
 Setor marcado Pro: a fala e a legenda dizem "no plano Pro".
 
 | # | Setor | O que mostrar | Nicho |
@@ -52,28 +71,28 @@ Setor marcado Pro: a fala e a legenda dizem "no plano Pro".
 
 ## Como fazer cada vídeo
 
-Use a skill `/brag-instagram` (Reels 1080x1920, narração pt-BR com a voz
-`minha-voz` do OmniVoice, legenda sincronizada). Rode tudo o que a skill
-manda (git, app, Supabase, `brag-output/`) dentro de `C:\dev\Nallon`:
-é lá que ficam o código e o repositório. Siga as regras dela: captura
-só do app local, com a loja fictícia "Aurora Celulares". Nunca capture
-produção nem dados reais.
+Use a skill `/reels-nallon`: ela escolhe os setores, escreve o roteiro,
+chama a `/brag-instagram` (Reels 1080x1920, narração pt-BR, legenda
+sincronizada), copia para `videos/` e registra.
 
-Terminado o vídeo, copie `brag.mp4`, `brag.jpg` e `share-copy.txt` para
-`videos/` com o nome do dia e do setor.
+- **Onde rodar.** Tudo o que a `/brag-instagram` manda (git, app, Supabase, `brag-output/`) roda dentro de `C:\dev\Nallon`: é lá que ficam o código e o repositório.
+- **Tela.** Captura só do app local, com loja fictícia: "Aurora Celulares" para CG e AT, a barbearia de demonstração para BAR. Para CLI e PS ainda não há semente: pare e pergunte antes de criar. Nunca capture produção nem dados reais.
+- **Visual.** Siga `docs/direcao-visual-reels.md`.
+- **Voz.** Narração sempre com a `narrador` do OmniVoice (perfil em `~/.hyperframes/vozes/narrador/`): voz masculina sintética, criada por descrição. Não troque a voz sem pedido.
+- **Trilha.** Música ambiente do primeiro ao último quadro, com uma das 5 trilhas de `trilhas.py`: `1-aurora` (padrão), `2-vidro`, `3-pulso`, `4-manha`, `5-horizonte`. Todas resolvem na tônica nos últimos segundos, junto com a assinatura.
+- **Entrega.** Copie `brag.mp4`, `brag.jpg` e `share-copy.txt` para `videos/` com o nome do dia e do setor. Depois do ok, faça o commit da capa, da legenda, do roteiro e do registro, e suba o `.mp4` para o Release do mês.
 
 ## Encerramento obrigatório de todo vídeo
 
-Todo vídeo termina com esta assinatura em narração, exatamente assim, sem alterar,
-abreviar nem variar:
+Todo vídeo termina com esta assinatura em narração, exatamente assim, sem
+alterar, abreviar nem variar:
 
 **"Nallon. Gestão inteligente para o seu negócio."**
 
 - Tom profissional, seguro, moderno e natural. Sem leitura acelerada; pausa curta depois de "Nallon".
-- Sempre que possível, a assinatura sai junto com a logo da Nallon na tela.
-- Encerramento limpo e premium: sem elementos visuais nem informações concorrentes.
+- Na tela, só a logo do Nallon (ou o nome NALLON) e a mesma frase, centralizadas sobre o fundo creme. A interface sai aos poucos antes. Sem celular, título, badge, oferta ou efeito luminoso.
+- A marca entra com animação sutil, de 0,8 a 1,5 segundo. A cena dura até a fala terminar.
 - Nenhuma frase depois da assinatura. Oferta, "teste grátis" e "link na bio" vão antes dela ou só na legenda do post.
-- A legenda na tela mostra a mesma frase.
 
 ## Regras de conteúdo
 
@@ -81,6 +100,7 @@ abreviar nem variar:
 - O Nallon não emite nota fiscal. Nota de entrada entra pela importação do XML do fornecedor. A consulta de notas na SEFAZ (MDe) ainda não funciona, porque depende do certificado A1 da loja: não mostre nem cite. Nunca sugira que emite.
 - Atalhos do PDV: F4 abre o pagamento, F9 busca produto. Não mostre F2 (sangria) nem F3 (suprimento) como se fosse venda.
 - Site: `nallon.com.br`. Teste grátis e planos em `nallon.com.br/planos`. Na legenda do post, escreva "link na bio", porque URL em legenda do Instagram não vira link.
-- Oferta: 10 dias grátis, sem cartão, sem fidelidade. Preços: Básico R$ 47,00/mês e Pro R$ 87,00/mês. Na fala, por extenso ("quarenta e sete reais por mês"). O valor mudou: o R$ 39,90 antigo não vale mais.
-- Só no plano Pro: diagnóstico por IA, lembretes automáticos e envio automático pelo WhatsApp, perfis de acesso por função, catálogo online, conciliação bancária e cobrança do crediário em lote. O link de agendamento existe nos dois planos.
+- Oferta: 10 dias grátis, sem cartão, sem fidelidade. Preços: Básico R$ 47,00/mês e Pro R$ 87,00/mês. Na fala, por extenso ("quarenta e sete reais por mês"). Nenhum outro valor vale.
+- Só no plano Pro: Lilo AI Assistant, diagnóstico por IA, lembretes automáticos e envio automático pelo WhatsApp, perfis de acesso por função, catálogo online, conciliação bancária e cobrança do crediário em lote. O link de agendamento existe nos dois planos.
+- Telefone e WhatsApp de contato não ficam escritos no repositório: no plano, use `[WhatsApp comercial]` e troque na hora de publicar.
 - Identidade: âmbar `#e8a33d`, fundo creme `#f5f1ea`, texto `#1a1714`. Títulos em Space Grotesk, texto em Geist.

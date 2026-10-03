@@ -10,7 +10,7 @@ A semana ainda não tem data. Ao agendar, anote aqui a segunda-feira de início.
 |---|---|---|---|---|---|---|
 | Seg | Carrossel | Assistência técnica | Reconhecimento | Comentar e enviar | `seg-carrossel-01` a `08` | Pronto |
 | Ter | Stories | Assistência técnica | Reconhecimento | Votar na enquete | `ter-story-enquete` | Pronto |
-| Qua | Reels | Comércio geral | Teste grátis | Link na bio | `videos/AAAA-MM-DD-pdv` | Gerar |
+| Qua | Reels | Comércio geral | Teste grátis | Link na bio | `videos/2026-10-03-pdv` | Pronto |
 | Qui | Stories | Todos | Teste grátis | Link do teste | `qui-story-pergunta`, `qui-story-teste` | Falta a captura do story 1 |
 | Sex | Post único | Prestadores de serviço | Contato WhatsApp | Chamar no WhatsApp | `sex-post` | Pronto |
 | Sáb | Stories | Todos | Contato WhatsApp | Chamar no WhatsApp | `sab-story-nota`, `sab-story-whatsapp` | Pronto |
@@ -176,7 +176,7 @@ Anote os números aqui antes de planejar a semana 2. O horário de cada post sai
 
 ## Pendências antes de publicar
 
-1. Gerar o Reels de quarta com `/reels-nallon`, setor PDV.
+1. ~~Gerar o Reels de quarta com `/reels-nallon`, setor PDV.~~ Gerado em 2026-10-03: `videos/2026-10-03-pdv`.
 2. Capturar a tela do story 1 de quinta no app local.
 3. Colocar o WhatsApp como segundo link da bio. O primeiro, do teste grátis (`nallon.com.br/planos`), já está lá.
 4. Na legenda de sexta, trocar `[WhatsApp comercial]` pelo número na hora de publicar.

@@ -8,3 +8,4 @@ Ao publicar, preencha a data e o link do post.
 
 | Data | Setor | Nicho | Arquivo | Publicado em | Link do post |
 |---|---|---|---|---|---|
+| 2026-10-03 | PDV | CG | 2026-10-03-pdv | | |

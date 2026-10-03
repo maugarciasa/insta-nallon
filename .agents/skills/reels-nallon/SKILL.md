@@ -1,6 +1,6 @@
 ---
 name: reels-nallon
-description: Produz os Reels do dia do Nallon de ponta a ponta. Escolhe 2 setores pelo ciclo do registro, gera cada vídeo com a /brag-instagram e a trilha ambiente própria, copia para videos/, registra, faz o commit e sobe o mp4 para o Release do mês. Use quando o usuário disser "/reels-nallon", "vídeos do dia", "faz os reels de hoje" ou "próximos vídeos do Nallon".
+description: Produz os Reels do dia do Nallon de ponta a ponta. Escolhe 2 setores pelo ciclo do registro, gera cada vídeo com a /brag e as regras de producao.md e a trilha ambiente própria, copia para videos/, registra, faz o commit e sobe o mp4 para o Release do mês. Use quando o usuário disser "/reels-nallon", "vídeos do dia", "faz os reels de hoje" ou "próximos vídeos do Nallon".
 ---
 
 # /reels-nallon
@@ -20,7 +20,7 @@ Onde este arquivo e o `CLAUDE.md` divergirem, vale o `CLAUDE.md`.
 | `--um` | só 1 vídeo em vez de 2 |
 | `--trilha <1-5>` | `1` (`aurora`) |
 | `--data AAAA-MM-DD` | hoje |
-| `--voz`, `--sem-voz`, `--no-music`, `--no-sfx` | repassadas à `/brag-instagram` |
+| `--voz`, `--sem-voz`, `--no-music`, `--no-sfx` | repassadas à `/brag` |
 
 Trilhas, geradas por `<skill-dir>/trilhas.py`:
 
@@ -54,10 +54,10 @@ Loja de demonstração por nicho (semeada só no Supabase local):
 
 | Nicho | Loja | Semente |
 |---|---|---|
-| CG, AT | Aurora Celulares | `semear-video.sql` da `/brag-instagram` |
-| BAR | Barbearia Ponto Certo | `semear-barbearia.sql` da `/brag-instagram` |
-| CLI | Clínica Vida Plena | `semear-clinica.sql` da `/brag-instagram` |
-| PS | Ar Frio Climatização | `semear-servicos.sql` da `/brag-instagram` |
+| CG, AT | Aurora Celulares | `semear-video.sql` (pasta da skill) |
+| BAR | Barbearia Ponto Certo | `semear-barbearia.sql` (pasta da skill) |
+| CLI | Clínica Vida Plena | `semear-clinica.sql` (pasta da skill) |
+| PS | Ar Frio Climatização | `semear-servicos.sql` (pasta da skill) |
 
 ## 2. Roteiro
 
@@ -93,12 +93,12 @@ legenda dizem "no plano Pro". A última fala é a assinatura do `CLAUDE.md`.
 Antes de compor, ler `<projeto>/docs/direcao-visual-reels.md`: formato
 exigido pelo Instagram, zona segura, legenda, movimento e encerramento.
 
-Rodar a `/brag-instagram` dentro de `C:\dev\Nallon`, uma vez por setor, com o
+Rodar a `/brag`, com as regras de `<skill-dir>/producao.md` (ler inteiro antes), dentro de `C:\dev\Nallon`, uma vez por setor, com o
 roteiro do passo 2 como plano. Pasta de saída:
 `C:\dev\Nallon\brag-output-<data>-<setor>`.
 
 Música (substitui o "Usar `/media-use` para achar a faixa" da
-`/brag-instagram`, salvo `--no-music`): depois de medir a duração final do
+`producao.md`, salvo `--no-music`): depois de medir a duração final do
 vídeo, gerar a trilha com essa duração e usar a escolhida.
 
 ```bash
@@ -107,10 +107,10 @@ python <skill-dir>/trilhas.py assets/music <segundos> <n>
 
 Sai só `assets/music/<n>-<nome>.wav`, da `--trilha` escolhida. Apontar o
 `<audio>` da música para ele. O ducking e o volume seguem a
-`/brag-instagram`.
+`producao.md`.
 
 Os 2 vídeos são independentes. Terminar e conferir o primeiro (checagem da
-`/brag-instagram`) antes de começar o segundo.
+`producao.md`) antes de começar o segundo.
 
 ## 4. Copiar, registrar e versionar
 
@@ -161,7 +161,7 @@ Passar esta lista junto com os vídeos:
 
 - Os 2 setores não saíram antes no ciclo e são diferentes entre si.
 - Cada vídeo segue `<projeto>/docs/direcao-visual-reels.md` e passa na revisão da seção 10 dela.
-- Cada vídeo passou na checagem da `/brag-instagram` (formato, volume, zona
+- Cada vídeo passou na checagem final do `producao.md` (formato, volume, zona
   segura, capa, loop) e termina com a assinatura exata do `CLAUDE.md`.
 - A folha `zona-segura.jpg` de cada vídeo mostra título e painel dentro de
   x 65–1015, y 270–1240, e a legenda entre y 1280 e y 1500, sem encostar na

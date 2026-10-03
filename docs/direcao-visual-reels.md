@@ -156,7 +156,7 @@ fala da assinatura terminar. Sem CTA, sem efeito luminoso.
 ## 10. Revisão antes de exportar
 
 - Quadro em 9:16, sem barras pretas.
-- Título, logo e painel inteiros em x 65–1015, y 270–1240; legenda entre y 1280 e y 1500. A folha de conferência da `/brag-instagram` (`zona-segura.jpg`) mostra isso de uma vez.
+- Título, logo e painel inteiros em x 65–1015, y 270–1240; legenda entre y 1280 e y 1500. A folha de conferência do `producao.md` (`zona-segura.jpg`) mostra isso de uma vez.
 - Em nenhum quadro a legenda encosta na interface.
 - Capa no modelo fixo da seção 1.
 - Alinhamentos, margens e espaçamentos consistentes.

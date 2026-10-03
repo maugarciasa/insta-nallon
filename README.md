@@ -23,7 +23,7 @@ conteúdo, os roteiros, as artes e os Reels prontos.
 | `artes/semana-NN/` | Artes finais de feed e stories (`dia-peça-slide.png`). |
 | `videos/` | Capa (`.jpg`) e legenda (`.txt`) de cada Reels, nome `AAAA-MM-DD-<setor>`. |
 | `.claude/skills/reels-nallon/` | Skill do fluxo diário: `/reels-nallon` escolhe os 2 setores, gera os vídeos, registra e versiona. Inclui as trilhas ambiente próprias (`trilhas.py`). |
-| `.agents/skills/` | Cópia das duas skills para o Codex, gerada por `sincronizar-skills.sh`. |
+| `.agents/skills/` | Cópia da skill para o Codex, gerada por `sincronizar-skills.sh`. |
 | `.githooks/pre-commit` | Roda a sincronização a cada commit. Ligar uma vez: `git config core.hooksPath .githooks`. |
 
 Os `.mp4` não ficam no git. Cada Reels final vai para o
@@ -32,7 +32,7 @@ Os `.mp4` não ficam no git. Cada Reels final vai para o
 
 ## Como os Reels são feitos
 
-A skill `/brag-instagram` grava o app rodando localmente com uma loja
+A skill `/reels-nallon` (sobre a `/brag`) grava o app rodando localmente com uma loja
 fictícia (comércio, barbearia, clínica ou prestador de serviço), narra em pt-BR e
 sincroniza a legenda. A música de fundo é sintetizada por `trilhas.py`
 (só `numpy`), sem faixa de terceiros.
@@ -40,7 +40,7 @@ sincroniza a legenda. A música de fundo é sintetizada por `trilhas.py`
 A skill depende de skills de terceiros que não estão neste repositório.
 Instale com `npx skills add <repositório>`:
 
-- [`latent-spaces/brag`](https://github.com/latent-spaces/brag): `/brag`, base da `/brag-instagram`.
+- [`latent-spaces/brag`](https://github.com/latent-spaces/brag): `/brag`, base da `/reels-nallon`.
 - [`heygen-com/hyperframes`](https://github.com/heygen-com/hyperframes): composição, render, áudio e legenda.
 - [`coreyhaines31/marketingskills`](https://github.com/coreyhaines31/marketingskills): copywriting, social, content-strategy e marketing-ideas.
 - [`petergyang/no-ai-slop`](https://github.com/petergyang/no-ai-slop): revisão de texto.

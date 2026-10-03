@@ -1,8 +1,10 @@
 # Registro de vídeos
 
 Ciclo 1. Quando os 16 setores do `CLAUDE.md` (na raiz) tiverem saído, anote "Ciclo 2" e recomece.
+Vídeo extra leva "extra: <tema>" na coluna Setor e não conta no ciclo.
 
-| Data | Setor | Arquivo | Publicado |
-|---|---|---|---|
-| 2026-09-30 | Lilo AI Assistant (Pro), fora da lista de 16 | videos/2026-09-30-lilo.mp4 | não |
-| 2026-09-30 | Agenda e agendamento online (BAR, barbearia) | videos/2026-09-30-agenda.mp4 | não |
+Arquivo é o nome-base em `videos/` (capa `.jpg` e legenda `.txt` no git; `.mp4` no Release `reels-AAAA-MM`).
+Ao publicar, preencha a data e o link do post.
+
+| Data | Setor | Nicho | Arquivo | Publicado em | Link do post |
+|---|---|---|---|---|---|

@@ -4,6 +4,7 @@
 *.DNG
 *.dng
 *.wav
+*.mp3
 amostras-voz/
 amostras-som/
 
@@ -15,6 +16,9 @@ amostras-som/
 !.agents/skills/brag-instagram/
 !.agents/skills/reels-nallon/
 skills-lock.json
+
+# Reels finais: o mp4 vai para o Release do mês no GitHub; o git guarda capa e legenda
+*.mp4
 
 # Saída de render e arquivos locais
 brag-output*/

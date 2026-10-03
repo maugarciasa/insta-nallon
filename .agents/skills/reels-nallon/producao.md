@@ -95,6 +95,10 @@ arquivo não repete essas regras: traz só o que é de execução.
 - **Passos da `/brag` que não se aplicam:** áudio-reativo, beat sync, espera de aprovação no `preview`, pôster tirado do render e `share-copy` de 1 a 3 frases.
 - **UI em pé.** Não encolher tela de desktop. Capturar o app em viewport de celular (390px de largura, escala 3) ou aproximar a câmera em uma coluna, um card ou um formulário por vez.
 - **Loop.** O Reels repete sozinho. O último frame emenda no primeiro sem salto: mesmo fundo e mesma cor base do gancho, sem fade para preto. A música não termina em silêncio longo; sai junto com o último frame. A última fala fecha a ideia.
+- **Movimento.** Na composição das cenas, consultar a skill `motion-design` (`SKILL.md`, `director/choreography.md`, `patterns/entrance-exit.md`). Prevalece sempre a seção 8 da direção visual.
+  - Arquétipo Premium: 350 a 600 ms, `cubic-bezier(0.4,0,0.2,1)`, sem overshoot. Transição de cena não passa de 500 ms (seção 8); a entrada da marca no encerramento segue os 0,8 a 1,5 s da seção 9. Os eases vão na timeline GSAP pausada da composição, nunca em `transition` de CSS.
+  - Valem: easing direcional (entrada desacelera, saída acelera); nunca só opacidade na entrada de elemento importante (o fade vem com slide de poucos pixels ou scale suave); no máximo 1/3 dos elementos em movimento ao mesmo tempo; stagger total abaixo de 500 ms; entrada mais longa que a saída.
+  - Não valem: arquétipos Playful e Energetic, overshoot, bounce, shake, a regra "sempre três camadas, incluindo ambiente" no encerramento e as tabelas de milissegundos de hover e press.
 
 A assinatura falada que encerra todo vídeo está em
 `C:\dev\Insta Nallon\CLAUDE.md`, seção "Encerramento obrigatório de todo

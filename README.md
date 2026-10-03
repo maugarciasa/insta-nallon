@@ -23,7 +23,6 @@ conteúdo, os roteiros, as artes e os Reels prontos.
 | `artes/semana-NN/` | Artes finais de feed e stories (`dia-peça-slide.png`). |
 | `videos/` | Capa (`.jpg`) e legenda (`.txt`) de cada Reels, nome `AAAA-MM-DD-<setor>`. |
 | `.claude/skills/reels-nallon/` | Skill do fluxo diário: `/reels-nallon` escolhe os 2 setores, gera os vídeos, registra e versiona. Inclui as trilhas ambiente próprias (`trilhas.py`). |
-| `.claude/skills/brag-instagram/` | Skill que gera cada Reels a partir do app local, com dados fictícios. |
 | `.agents/skills/` | Cópia das duas skills para o Codex, gerada por `sincronizar-skills.sh`. |
 | `.githooks/pre-commit` | Roda a sincronização a cada commit. Ligar uma vez: `git config core.hooksPath .githooks`. |
 

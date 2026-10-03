@@ -24,8 +24,7 @@ regra aqui, refaça o trecho correspondente lá.
 - `videos/`: Reels prontos, nome `AAAA-MM-DD-<setor>` (setor em uma palavra: `pdv`, `caixa`, `agenda`…). O git guarda a capa (`.jpg`) e a legenda do post (`.txt`). O `.mp4` fica só na máquina e vai para o Release do mês no GitHub (`reels-AAAA-MM`).
 - `amostras-voz/` e `amostras-som/`: áudio de trabalho, fora do git. As trilhas de amostra saem de `trilhas.py`.
 - `.claude/skills/reels-nallon/`: skill própria do fluxo diário (`/reels-nallon`). Traz `trilhas.py`, que sintetiza as 5 trilhas ambiente.
-- `.claude/skills/brag-instagram/`: skill própria que gera cada Reels. É a cópia oficial: `~/.claude/skills/brag-instagram` é junction para cá.
-- `.agents/skills/`: cópia das duas skills para o Codex. Edite só em `.claude/skills/`: o hook de `.githooks/pre-commit` roda `sincronizar-skills.sh` a cada commit, que copia e troca `~/.claude/` por `~/.Codex/`. Em clone novo, ligue o hook uma vez com `git config core.hooksPath .githooks`.
+- `.agents/skills/`: cópia da skill para o Codex. Edite só em `.claude/skills/`: o hook de `.githooks/pre-commit` roda `sincronizar-skills.sh` a cada commit, que copia a skill. Em clone novo, ligue o hook uma vez com `git config core.hooksPath .githooks`.
 
 As outras skills de `.claude/skills` e `.agents/skills` são de terceiros,
 instaladas com `npx skills`, e ficam fora do git.
